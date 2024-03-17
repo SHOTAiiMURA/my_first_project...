@@ -253,3 +253,16 @@ def handle_follow(event):
         TextSendMessage(
             text='登録して頂きありがとうございます！Cafe BORCELLEのLINE公式アカウントです。\n\n下記Menuから今日のドリンクメニューやクーポン、お問い合わせ、ホームページのリンクがご確認頂けます。\n\n自動会話botと連携しており、チャットで話しかけると返答が返ってきます。\n\nぜひご活用頂ければ幸いです。'))
 
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    send_message = event.message.text
+    print(event)
+
+    if send_message == "タスクを見る" and isinstance(event.source, SourceUser):
+        profile = line_bot_api.get_profile(event.source.user_id)
+        tmpname = profile.display_name
+        line_bot_api.reply_message(
+            event.reply_token,
+            (ImageSendMessage(
+                original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png",
+                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png")))
