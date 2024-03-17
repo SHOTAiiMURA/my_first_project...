@@ -266,3 +266,5 @@ def handle_message(event):
             (ImageSendMessage(
                 original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png",
                 preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png")))
+
+        elif
