@@ -102,7 +102,7 @@ def handle_message(event):
                 original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png",
                 preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png")))
 
-    elif send_message == "今日のドリンクメニュー" and isinstance(event.source, SourceUser):
+    elif send_message == "Add" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
         line_bot_api.reply_message(
@@ -110,7 +110,7 @@ def handle_message(event):
             (ImageSendMessage(
                 original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png",
                 preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png")))
-    elif send_message == "お問い合わせ" and isinstance(event.source, SourceUser):
+    elif send_message == "Delete" and isinstance(event.source, SourceUser):
         bubble_string = """
             {
               "type": "bubble",
