@@ -82,6 +82,7 @@ def lambda_handler(event, context):
 
 
 # 以下でWebhookから送られてきたイベントをどのように処理するかを記述する
+#各機能のボタン部分を作成
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     send_message = event.message.text
