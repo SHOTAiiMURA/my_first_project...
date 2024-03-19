@@ -148,7 +148,8 @@ def handle_message(event):
                 "color": "#1DB446",
                 "weight": "bold"
               }
-            ]
+            ],
+            "margin": "none"
           },
           {
             "type": "box",
@@ -167,31 +168,27 @@ def handle_message(event):
                 "size": "xxs",
                 "align": "center"
               }
-            ]
+            ],
+            "margin": "xs"
           },
           {
             "type": "box",
             "layout": "horizontal",
-            "margin": "xxl",
             "contents": [
               {
                 "type": "text",
-                "text": "Task 3",
-                "size": "lg",
-                "align": "center"
-              },
-              {
-                "type": "text",
-                "text": "Starts in 20 minutes",
-                "size": "xxs",
-                "align": "start",
-                "gravity": "center"
+                "text": "Upcoming Tasks",
+                "size": "sm",
+                "color": "#1DB446",
+                "weight": "bold",
+                "margin": "none"
               }
-            ]
+            ],
+            "margin": "md"
           },
           {
             "type": "box",
-            "layout": "horizontal",
+            "layout": "vertical",
             "contents": [
               {
                 "type": "text",
@@ -205,14 +202,13 @@ def handle_message(event):
                 "text": "Starts in 30 minutes",
                 "size": "xxs",
                 "color": "#111111",
-                "align": "start",
-                "gravity": "center"
+                "align": "center"
               }
             ]
           },
           {
             "type": "box",
-            "layout": "horizontal",
+            "layout": "vertical",
             "contents": [
               {
                 "type": "text",
@@ -226,14 +222,13 @@ def handle_message(event):
                 "text": "Starts in 40 minutes",
                 "size": "xxs",
                 "color": "#111111",
-                "align": "start",
-                "gravity": "center"
+                "align": "center"
               }
             ]
           },
           {
             "type": "box",
-            "layout": "horizontal",
+            "layout": "vertical",
             "contents": [
               {
                 "type": "text",
@@ -247,8 +242,7 @@ def handle_message(event):
                 "text": "Starts in 50 minutes",
                 "size": "xxs",
                 "color": "#111111",
-                "align": "start",
-                "gravity": "center"
+                "align": "center"
               }
             ]
           }
@@ -256,7 +250,7 @@ def handle_message(event):
       },
       {
         "type": "separator",
-        "margin": "xxl"
+        "margin": "xl"
       },
       {
         "type": "box",
