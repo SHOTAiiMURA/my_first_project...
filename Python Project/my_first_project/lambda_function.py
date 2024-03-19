@@ -97,12 +97,195 @@ def handle_message(event):
         print("user profile can't not use")
 
     if send_message == "View" and isinstance(event.source, SourceUser):
+        bubble_string = """
+            {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "In Progress",
+        "weight": "bold",
+        "color": "#1DB446",
+        "size": "sm"
+      },
+      {
+        "type": "text",
+        "text": "Task name",
+        "weight": "bold",
+        "size": "xxl",
+        "margin": "sm",
+        "align": "center"
+      },
+      {
+        "type": "text",
+        "text": "Remaining X minutes...",
+        "size": "xxs",
+        "color": "#aaaaaa",
+        "wrap": true,
+        "align": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "md",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Next Task",
+                "size": "sm",
+                "color": "#1DB446",
+                "weight": "bold"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "duolingo",
+                "size": "xxl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 10 minuties",
+                "size": "xxs",
+                "align": "center"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Task 3",
+                "size": "lg",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 20 minutes",
+                "size": "xxs",
+                "align": "start",
+                "gravity": "center"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Task4",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 30 minutes",
+                "size": "xxs",
+                "color": "#111111",
+                "align": "start",
+                "gravity": "center"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Tasks 5",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 40 minutes",
+                "size": "xxs",
+                "color": "#111111",
+                "align": "start",
+                "gravity": "center"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Tasks 6",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 50 minutes",
+                "size": "xxs",
+                "color": "#111111",
+                "align": "start",
+                "gravity": "center"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "3.20.2024",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "flex": 0
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
+"""
+message = FlexSendMessage(alt_text="view", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
             event.reply_token,
-            (ImageSendMessage(
-                original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png",
-                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png")))
-
+            message
+        )
     elif send_message == "Add" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
@@ -218,7 +401,7 @@ def handle_message(event):
               }
             }
         """
-        message = FlexSendMessage(alt_text="お問い合わせ", contents=json.loads(bubble_string))
+        message = FlexSendMessage(alt_text="Delete", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
             event.reply_token,
             message
