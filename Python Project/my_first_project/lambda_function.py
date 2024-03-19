@@ -281,7 +281,7 @@ def handle_message(event):
   }
 }
 """
-message = FlexSendMessage(alt_text="view", contents=json.loads(bubble_string))
+        message = FlexSendMessage(alt_text="view", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
             event.reply_token,
             message
