@@ -277,7 +277,7 @@ def handle_message(event):
     }
   }
 },
-    {
+{
   "type": "bubble",
   "body": {
     "type": "box",
@@ -285,50 +285,42 @@ def handle_message(event):
     "contents": [
       {
         "type": "text",
-        "text": "In Progress",
+        "text": "High Priority",
         "weight": "bold",
         "color": "#1DB446",
-        "size": "sm"
-      },
-      {
-        "type": "text",
-        "text": "Task name",
-        "weight": "bold",
         "size": "xxl",
-        "margin": "sm",
-        "align": "center"
-      },
-      {
-        "type": "text",
-        "text": "Remaining X minutes...",
-        "size": "xxs",
-        "color": "#aaaaaa",
-        "wrap": true,
         "align": "center"
       },
       {
         "type": "separator",
-        "margin": "lg"
+        "margin": "sm"
       },
       {
         "type": "box",
         "layout": "vertical",
         "margin": "md",
-        "spacing": "sm",
         "contents": [
           {
             "type": "box",
-            "layout": "horizontal",
+            "layout": "vertical",
             "contents": [
               {
                 "type": "text",
                 "text": "Next Task",
-                "size": "sm",
-                "color": "#1DB446",
-                "weight": "bold"
+                "size": "xl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
+                "size": "xxs",
+                "align": "center"
               }
             ],
-            "margin": "none"
+            "margin": "xs",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
           },
           {
             "type": "box",
@@ -337,7 +329,7 @@ def handle_message(event):
               {
                 "type": "text",
                 "text": "duolingo",
-                "size": "xxl",
+                "size": "xl",
                 "color": "#555555",
                 "align": "center"
               },
@@ -348,22 +340,31 @@ def handle_message(event):
                 "align": "center"
               }
             ],
-            "margin": "xs"
+            "margin": "md",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
           },
           {
             "type": "box",
-            "layout": "horizontal",
+            "layout": "vertical",
             "contents": [
               {
                 "type": "text",
                 "text": "Upcoming Tasks",
-                "size": "sm",
-                "color": "#1DB446",
-                "weight": "bold",
-                "margin": "none"
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
+                "align": "center",
+                "size": "xxs"
               }
             ],
-            "margin": "md"
+            "margin": "md",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
           },
           {
             "type": "box",
@@ -371,79 +372,142 @@ def handle_message(event):
             "contents": [
               {
                 "type": "text",
-                "text": "Task4",
-                "size": "lg",
-                "color": "#555555",
-                "align": "center"
-              },
-              {
-                "type": "text",
-                "text": "Starts in 30 minutes",
-                "size": "xxs",
-                "color": "#111111",
+                "text": " add tasks",
                 "align": "center"
               }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Tasks 5",
-                "size": "lg",
-                "color": "#555555",
-                "align": "center"
-              },
-              {
-                "type": "text",
-                "text": "Starts in 40 minutes",
-                "size": "xxs",
-                "color": "#111111",
-                "align": "center"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Tasks 6",
-                "size": "lg",
-                "color": "#555555",
-                "align": "center"
-              },
-              {
-                "type": "text",
-                "text": "Starts in 50 minutes",
-                "size": "xxs",
-                "color": "#111111",
-                "align": "center"
-              }
-            ]
+            ],
+            "margin": "xxl",
+            "cornerRadius": "xxl",
+            "backgroundColor": "#1DB446",
+            "justifyContent": "space-between",
+            "alignItems": "center"
           }
-        ]
+        ],
+        "action": {
+          "type": "postback",
+          "label": "action",
+          "data": "hello"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+},
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Medium",
+        "weight": "bold",
+        "color": "#1DB446",
+        "size": "xxl",
+        "align": "center"
       },
       {
         "type": "separator",
-        "margin": "xl"
+        "margin": "sm"
       },
       {
         "type": "box",
-        "layout": "horizontal",
+        "layout": "vertical",
         "margin": "md",
         "contents": [
           {
-            "type": "text",
-            "text": "3.20.2024",
-            "size": "xs",
-            "color": "#aaaaaa",
-            "flex": 0
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Next Task",
+                "size": "xl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
+                "size": "xxs",
+                "align": "center"
+              }
+            ],
+            "margin": "xs",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "duolingo",
+                "size": "xl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 10 minuties",
+                "size": "xxs",
+                "align": "center"
+              }
+            ],
+            "margin": "md",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Upcoming Tasks",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
+                "align": "center",
+                "size": "xxs"
+              }
+            ],
+            "margin": "md",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": " add tasks",
+                "align": "center"
+              }
+            ],
+            "margin": "xxl",
+            "cornerRadius": "xxl",
+            "backgroundColor": "#1DB446",
+            "justifyContent": "space-between",
+            "alignItems": "center"
           }
-        ]
+        ],
+        "action": {
+          "type": "postback",
+          "label": "action",
+          "data": "hello"
+        }
       }
     ]
   },
