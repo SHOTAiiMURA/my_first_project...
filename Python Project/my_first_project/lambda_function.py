@@ -551,7 +551,7 @@ def handle_postback_todo(event):
             (TextSendMessage(text='you are awesome!!'))
         )
 
-@handler.add(PostbackEvent):
+@handler.add(PostbackEvent)
 def handle_postback_todo2(event):
     if event.todo.data2 == "hello2":
         line_bot_api.reply_message(
