@@ -272,7 +272,8 @@
                 "action": {
                   "type": "postback",
                   "label": "Add Task",
-                  "data": "hello"
+                  "data": "hello",
+                  "displayText": "Hellomotherfucker"
                 }
               }
             ],
@@ -280,12 +281,7 @@
             "cornerRadius": "xxl",
             "backgroundColor": "#1DB446",
             "justifyContent": "space-between",
-            "alignItems": "center",
-            "action": {
-              "type": "postback",
-              "label": "action",
-              "data": "hello"
-            }
+            "alignItems": "center"
           }
         ],
         "action": {
@@ -400,7 +396,8 @@
                 "action": {
                   "type": "postback",
                   "label": "Add Task",
-                  "data": "hello"
+                  "data": "hello",
+                  "displayText": "Hellomotherfucker"
                 }
               }
             ],
@@ -408,12 +405,7 @@
             "cornerRadius": "xxl",
             "backgroundColor": "#1DB446",
             "justifyContent": "space-between",
-            "alignItems": "center",
-            "action": {
-              "type": "postback",
-              "label": "action",
-              "data": "hello"
-            }
+            "alignItems": "center"
           }
         ],
         "action": {
