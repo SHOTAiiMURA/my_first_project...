@@ -570,12 +570,6 @@ def handle_postback_todo(event):
             event.reply_token,
             (TextSendMessage(text='you are fucking cool'))
         )
-
-#when user tap current ongoing task.
-#Functin: when user tap the highest task in high priority
-#Functin: when user tap second highest task in high priority
-#Functin: when user tap third highest task in high priority
-@handler.add(PostbackEvent)
 def handle_in_progress(event):
     if event.postback.data == "user=taskname":
         line_bot_api.reply_message(
