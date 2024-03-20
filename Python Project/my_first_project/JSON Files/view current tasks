@@ -268,20 +268,24 @@
             "layout": "vertical",
             "contents": [
               {
-                "type": "button",
-                "action": {
-                  "type": "postback",
-                  "label": "Add Task",
-                  "data": "hello",
-                  "displayText": "Hellomotherfucker"
-                }
+                "type": "text",
+                "text": "hellomotherfucker",
+                "align": "center",
+                "color": "#42659a",
+                "gravity": "top"
               }
             ],
             "margin": "xxl",
             "cornerRadius": "xxl",
             "backgroundColor": "#1DB446",
             "justifyContent": "space-between",
-            "alignItems": "center"
+            "alignItems": "center",
+            "action": {
+              "type": "postback",
+              "label": "add task",
+              "data": "hello",
+              "displayText": "hellomothercfucker"
+            }
           }
         ],
         "action": {
@@ -392,20 +396,24 @@
             "layout": "vertical",
             "contents": [
               {
-                "type": "button",
-                "action": {
-                  "type": "postback",
-                  "label": "Add Task",
-                  "data": "hello",
-                  "displayText": "Hellomotherfucker"
-                }
+                "type": "text",
+                "text": "hellomotherfucker",
+                "align": "center",
+                "color": "#42659a",
+                "gravity": "top"
               }
             ],
             "margin": "xxl",
             "cornerRadius": "xxl",
             "backgroundColor": "#1DB446",
             "justifyContent": "space-between",
-            "alignItems": "center"
+            "alignItems": "center",
+            "action": {
+              "type": "postback",
+              "label": "add task",
+              "data": "hello2",
+              "displayText": "hellomothercfucker"
+            }
           }
         ],
         "action": {

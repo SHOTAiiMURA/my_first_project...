@@ -98,9 +98,6 @@ def handle_message(event):
 
     if send_message == "View" and isinstance(event.source, SourceUser):
         bubble_string = """
-          {
-  "type": "carousel",
-  "contents": [
 {
   "type": "bubble",
   "body": {
@@ -375,7 +372,8 @@ def handle_message(event):
                 "action": {
                   "type": "postback",
                   "label": "Add Task",
-                  "data": "hello"
+                  "data": "hello",
+                  "displayText": "Hellomotherfucker"
                 }
               }
             ],
@@ -383,19 +381,13 @@ def handle_message(event):
             "cornerRadius": "xxl",
             "backgroundColor": "#1DB446",
             "justifyContent": "space-between",
-            "alignItems": "center",
-            "action": {
-              "type": "postback",
-              "label": "action",
-              "data": "hello"
-            }
+            "alignItems": "center"
           }
         ],
         "action": {
           "type": "postback",
           "label": "action",
           "data": "hello"
-          "displayText": "何時から開いていますか？"
         }
       }
     ]
@@ -504,7 +496,8 @@ def handle_message(event):
                 "action": {
                   "type": "postback",
                   "label": "Add Task",
-                  "data": "hello"
+                  "data": "hello",
+                  "displayText": "Hellomotherfucker"
                 }
               }
             ],
@@ -512,19 +505,13 @@ def handle_message(event):
             "cornerRadius": "xxl",
             "backgroundColor": "#1DB446",
             "justifyContent": "space-between",
-            "alignItems": "center",
-            "action": {
-              "type": "postback",
-              "label": "action",
-              "data": "hellomotherfucker"
-            }
+            "alignItems": "center"
           }
         ],
         "action": {
           "type": "postback",
           "label": "action",
-          "data": "hellomotherfucker"
-          "displayText": "何時から開いていますか？"
+          "data": "hello"
         }
       }
     ]
@@ -535,10 +522,8 @@ def handle_message(event):
     }
   }
 }
-  ]
-}
 """
-        message = FlexSendMessage(alt_text="view", contents=json.loads(bubble_string))
+        message = FlexSendMessage(alt_text="View", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
             event.reply_token,
             message
@@ -554,109 +539,437 @@ def handle_message(event):
     elif send_message == "Delete" and isinstance(event.source, SourceUser):
         bubble_string = """
             {
-              "type": "bubble",
-              "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "お問い合わせ",
-                    "weight": "bold",
-                    "align": "center",
-                    "color": "#ffffff"
-                  },
-                  {
-                    "type": "text",
-                    "text": "お困りの状況に該当するものをお選びください。",
-                    "wrap": true,
-                    "color": "#ffffff"
-                  }
-                ],
-                "backgroundColor": "#00CC62"
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "何時から開いていますか？",
-                        "align": "center",
-                        "color": "#42659a"
-                      }
-                    ],
-                    "action": {
-                      "type": "postback",
-                      "label": "question",
-                      "data": "action=question&id=1",
-                      "displayText": "何時から開いていますか？"
-                    }
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "店舗はどこにありますか？",
-                        "color": "#42659a",
-                        "align": "center"
-                      }
-                    ],
-                    "margin": "12px",
-                    "action": {
-                      "type": "postback",
-                      "label": "question",
-                      "data": "action=question&id=2",
-                      "displayText": "店舗はどこにありますか？"
-                    }
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "駐車場はありますか？",
-                        "color": "#42659a",
-                        "align": "center"
-                      }
-                    ],
-                    "margin": "12px",
-                    "action": {
-                      "type": "postback",
-                      "label": "question",
-                      "data": "action=question&id=3",
-                      "displayText": "駐車場はありますか？"
-                    }
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "テイクアウトやデリバリーはありますか？",
-                        "align": "center",
-                        "color": "#42659a"
-                      }
-                    ],
-                    "margin": "12px",
-                    "action": {
-                      "type": "postback",
-                      "label": "question",
-                      "data": "action=question&id=4",
-                      "displayText": "テイクアウトやデリバリーはありますか？"
-                    }
-                  }
-                ]
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "In Progress",
+        "weight": "bold",
+        "color": "#1DB446",
+        "size": "sm"
+      },
+      {
+        "type": "text",
+        "text": "Task name",
+        "weight": "bold",
+        "size": "xxl",
+        "margin": "sm",
+        "align": "center"
+      },
+      {
+        "type": "text",
+        "text": "Remaining X minutes...",
+        "size": "xxs",
+        "color": "#aaaaaa",
+        "wrap": true,
+        "align": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "md",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Next Task",
+                "size": "sm",
+                "color": "#1DB446",
+                "weight": "bold"
               }
+            ],
+            "margin": "none"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "duolingo",
+                "size": "xxl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 10 minuties",
+                "size": "xxs",
+                "align": "center"
+              }
+            ],
+            "margin": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Upcoming Tasks",
+                "size": "sm",
+                "color": "#1DB446",
+                "weight": "bold",
+                "margin": "none"
+              }
+            ],
+            "margin": "md"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Task4",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 30 minutes",
+                "size": "xxs",
+                "color": "#111111",
+                "align": "center"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Tasks 5",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 40 minutes",
+                "size": "xxs",
+                "color": "#111111",
+                "align": "center"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Tasks 6",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 50 minutes",
+                "size": "xxs",
+                "color": "#111111",
+                "align": "center"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "xl"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "3.20.2024",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "flex": 0
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+},
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "High Priority",
+        "weight": "bold",
+        "color": "#1DB446",
+        "size": "xxl",
+        "align": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "sm"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Next Task",
+                "size": "xl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
+                "size": "xxs",
+                "align": "center"
+              }
+            ],
+            "margin": "xs",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "duolingo",
+                "size": "xl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 10 minuties",
+                "size": "xxs",
+                "align": "center"
+              }
+            ],
+            "margin": "md",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Upcoming Tasks",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
+                "align": "center",
+                "size": "xxs"
+              }
+            ],
+            "margin": "md",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "hellomotherfucker",
+                "align": "center",
+                "color": "#42659a",
+                "gravity": "top"
+              }
+            ],
+            "margin": "xxl",
+            "cornerRadius": "xxl",
+            "backgroundColor": "#1DB446",
+            "justifyContent": "space-between",
+            "alignItems": "center",
+            "action": {
+              "type": "postback",
+              "label": "add task",
+              "data": "hello",
+              "displayText": "hellomothercfucker"
             }
+          }
+        ],
+        "action": {
+          "type": "postback",
+          "label": "action",
+          "data": "hello"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+},
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Medium Priority",
+        "weight": "bold",
+        "color": "#1DB446",
+        "size": "xxl",
+        "align": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "sm"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Next Task",
+                "size": "xl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
+                "size": "xxs",
+                "align": "center"
+              }
+            ],
+            "margin": "xs",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "duolingo",
+                "size": "xl",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Starts in 10 minuties",
+                "size": "xxs",
+                "align": "center"
+              }
+            ],
+            "margin": "md",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Upcoming Tasks",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "hello, world",
+                "align": "center",
+                "size": "xxs"
+              }
+            ],
+            "margin": "md",
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "hellomotherfucker",
+                "align": "center",
+                "color": "#42659a",
+                "gravity": "top"
+              }
+            ],
+            "margin": "xxl",
+            "cornerRadius": "xxl",
+            "backgroundColor": "#1DB446",
+            "justifyContent": "space-between",
+            "alignItems": "center",
+            "action": {
+              "type": "postback",
+              "label": "add task",
+              "data": "hello2",
+              "displayText": "hellomothercfucker"
+            }
+          }
+        ],
+        "action": {
+          "type": "postback",
+          "label": "action",
+          "data": "hello"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
         """
         message = FlexSendMessage(alt_text="Delete", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
@@ -671,7 +984,7 @@ def handle_postback_todo(event):
             event.reply_token,
             (TextSendMessage(text='平日は8:30~17:00、祝休日は8:30~21:00まで開いています。'))
         )
-    elif event.todo.data == "hellomotherfucker":
+    elif event.todo.data == "hello2":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='you are fucking cool'))
