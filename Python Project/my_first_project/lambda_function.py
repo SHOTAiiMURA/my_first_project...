@@ -570,8 +570,7 @@ def handle_postback_todo(event):
             event.reply_token,
             (TextSendMessage(text='you are fucking cool'))
         )
-def handle_in_progress(event):
-    if event.postback.data == "user=taskname":
+    elif event.postback.data == "user=taskname":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='Programming'))
