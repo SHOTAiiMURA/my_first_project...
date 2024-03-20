@@ -901,6 +901,11 @@ def handle_postback_todo(event):
   }
 }
 """
+        message2 = FlexSendMessage(alt_text="Programming", contents=json.loads(bubble_string))
+        line_bot_api.reply_message(
+            event.reply_token,
+            message2
+        )
     elif event.postback.data =="most=highest=task":
         line_bot_api.reply_message(
             event.reply_token,
