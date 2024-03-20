@@ -545,21 +545,18 @@ def handle_message(event):
 #Function: when user tap action of high priority
 @handler.add(PostbackEvent)
 def handle_postback_todo(event):
-    if event.postback2.data == "hello":
+    if event.postback.data == "hello":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='you are awesome!!'))
         )
-
-@handler.add(PostbackEvent)
-def handle_postback_todo2(event):
-    if event.postback.data == "hello2":
+    elif event.postback.data == "hello2":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='you are fucking cool'))
         )
 
-#Function: when user tap action button of medium priority
+
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
