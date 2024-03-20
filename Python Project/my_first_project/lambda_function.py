@@ -515,14 +515,14 @@ def handle_message(event):
             "action": {
               "type": "postback",
               "label": "action",
-              "data": "hello"
+              "data": "hellomotherfucker"
             }
           }
         ],
         "action": {
           "type": "postback",
           "label": "action",
-          "data": "hello"
+          "data": "hellomotherfucker"
         }
       }
     ]
@@ -661,7 +661,21 @@ def handle_message(event):
             event.reply_token,
             message
         )
+#Function: when user tap action of high priority
+@handler.add(PostbackEvent)
+def handle_postback_todo(event):
+    if event.todo.data == "hello":
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='平日は8:30~17:00、祝休日は8:30~21:00まで開いています。'))
+        )
+    elif event.todo.data == "hellomotherfucker":
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='you are fucking cool'))
+        )
 
+#Function: when user tap action button of medium priority
 @handler.add(PostbackEvent)
 def handle_postback(event):
     if event.postback.data == 'action=question&id=1':
