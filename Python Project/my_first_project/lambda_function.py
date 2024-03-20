@@ -98,7 +98,10 @@ def handle_message(event):
 
     if send_message == "View" and isinstance(event.source, SourceUser):
         bubble_string = """
-{
+        {
+  "type": "carousel",
+  "contents": [
+  {
   "type": "bubble",
   "body": {
     "type": "box",
@@ -521,6 +524,8 @@ def handle_message(event):
       "separator": true
     }
   }
+}
+  ]
 }
 """
         message = FlexSendMessage(alt_text="View", contents=json.loads(bubble_string))
