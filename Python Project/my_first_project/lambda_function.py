@@ -901,9 +901,6 @@ def handle_postback_todo(event):
   }
 }
 """
-        line_bot_api.reply_message(
-            event.reply_token,
-        )
     elif event.postback.data =="most=highest=task":
         line_bot_api.reply_message(
             event.reply_token,
