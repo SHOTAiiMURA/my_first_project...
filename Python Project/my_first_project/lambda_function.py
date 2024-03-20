@@ -550,36 +550,16 @@ def handle_postback_todo(event):
             event.reply_token,
             (TextSendMessage(text='you are awesome!!'))
         )
-    elif event.todo.data == "hello2":
+
+@handler.add(PostbackEvent):
+def handle_postback_todo2(event):
+    if event.todo.data2 == "hello2":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='you are fucking cool'))
         )
 
 #Function: when user tap action button of medium priority
-@handler.add(PostbackEvent)
-def handle_postback(event):
-    if event.postback.data == 'action=question&id=1':
-        line_bot_api.reply_message(
-            event.reply_token,
-            (TextSendMessage(text='平日は8:30~17:00、祝休日は8:30~21:00まで開いています。'))
-        )
-    elif event.postback.data == 'action=question&id=2':
-        line_bot_api.reply_message(
-            event.reply_token,
-            (TextSendMessage(text='下記リンクからGoogle Mapで確認できます。\nhttps://goo.gl/maps/m2KbyY6RA8QepLaa8'))
-        )
-    elif event.postback.data == 'action=question&id=3':
-        line_bot_api.reply_message(
-            event.reply_token,
-            (TextSendMessage(text='はい、車6台が停めれる駐車場がございます。また、駐輪場もございます。'))
-        )
-    elif event.postback.data == 'action=question&id=4':
-        line_bot_api.reply_message(
-            event.reply_token,
-            (TextSendMessage(text='申し訳ございません。デリバリーもテイクアウトも今はやっておりません'))
-        )
-
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
