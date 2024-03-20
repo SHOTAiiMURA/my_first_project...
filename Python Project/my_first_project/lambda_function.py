@@ -571,6 +571,336 @@ def handle_postback_todo(event):
             (TextSendMessage(text='you are fucking cool'))
         )
     elif event.postback.data == "user=taskname":
+        bubble_string = """
+        {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Your Tasks",
+        "weight": "bold",
+        "color": "#1DB446",
+        "size": "sm"
+      },
+      {
+        "type": "text",
+        "text": "Task name",
+        "weight": "bold",
+        "size": "xxl",
+        "margin": "md",
+        "align": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "sm",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "In Progress",
+                    "margin": "xl",
+                    "size": "sm",
+                    "align": "center"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "High Priority",
+                    "margin": "xl",
+                    "size": "sm",
+                    "align": "center"
+                  }
+                ]
+              }
+            ],
+            "margin": "none"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "1 hour 15 minutes Left",
+                "size": "sm",
+                "color": "#555555",
+                "align": "center"
+              }
+            ],
+            "margin": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "height": "1px",
+                    "backgroundColor": "#aaaaaa",
+                    "offsetTop": "7px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "backgroundColor": "#00c300",
+                    "height": "3px",
+                    "width": "80%",
+                    "position": "absolute",
+                    "offsetTop": "6px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#00c300",
+                        "cornerRadius": "5px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#00c300",
+                        "cornerRadius": "5px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#00c300",
+                        "cornerRadius": "5px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#00c300",
+                        "cornerRadius": "5px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "14px",
+                        "height": "14px",
+                        "backgroundColor": "#00e600",
+                        "cornerRadius": "7px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#aaaaaa",
+                        "cornerRadius": "5px"
+                      }
+                    ],
+                    "position": "absolute",
+                    "width": "100%",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                ],
+                "height": "14px"
+              }
+            ],
+            "spacing": "lg"
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Finish",
+                "size": "lg",
+                "color": "#555555",
+                "align": "center"
+              }
+            ],
+            "backgroundColor": "#00c300",
+            "paddingAll": "md",
+            "cornerRadius": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Extend Time",
+                "size": "sm"
+              }
+            ],
+            "margin": "md"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "20 minutes",
+                    "align": "center",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "40 minutes",
+                    "align": "center",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "1 hour",
+                    "align": "center",
+                    "size": "xs"
+                  }
+                ]
+              }
+            ],
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "2 hours",
+                    "align": "center",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Tomorrow",
+                    "align": "center",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Next Week",
+                    "align": "center",
+                    "size": "xs"
+                  }
+                ]
+              }
+            ],
+            "margin": "lg"
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Created Today 15:00",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "flex": 0
+          },
+          {
+            "type": "text",
+            "text": "Posted Today",
+            "color": "#aaaaaa",
+            "size": "xs",
+            "align": "end"
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
+"""
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='Programming'))
