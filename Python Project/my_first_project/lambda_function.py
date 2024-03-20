@@ -499,7 +499,7 @@ def handle_message(event):
                 "action": {
                   "type": "postback",
                   "label": "Add Task",
-                  "data": "hello",
+                  "data": "hello2",
                   "displayText": "Hellomotherfucker"
                 }
               }
@@ -987,7 +987,7 @@ def handle_postback_todo(event):
     if event.todo.data == "hello":
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text='平日は8:30~17:00、祝休日は8:30~21:00まで開いています。'))
+            (TextSendMessage(text='you are awesome!!'))
         )
     elif event.todo.data == "hello2":
         line_bot_api.reply_message(
