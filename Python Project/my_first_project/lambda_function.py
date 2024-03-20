@@ -101,7 +101,7 @@ def handle_message(event):
           {
   "type": "carousel",
   "contents": [
-    {
+{
   "type": "bubble",
   "body": {
     "type": "box",
@@ -371,16 +371,24 @@ def handle_message(event):
             "layout": "vertical",
             "contents": [
               {
-                "type": "text",
-                "text": " add tasks",
-                "align": "center"
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "Add Task",
+                  "data": "hello"
+                }
               }
             ],
             "margin": "xxl",
             "cornerRadius": "xxl",
             "backgroundColor": "#1DB446",
             "justifyContent": "space-between",
-            "alignItems": "center"
+            "alignItems": "center",
+            "action": {
+              "type": "postback",
+              "label": "action",
+              "data": "hello"
+            }
           }
         ],
         "action": {
@@ -405,7 +413,7 @@ def handle_message(event):
     "contents": [
       {
         "type": "text",
-        "text": "Medium",
+        "text": "Medium Priority",
         "weight": "bold",
         "color": "#1DB446",
         "size": "xxl",
@@ -491,16 +499,24 @@ def handle_message(event):
             "layout": "vertical",
             "contents": [
               {
-                "type": "text",
-                "text": " add tasks",
-                "align": "center"
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "Add Task",
+                  "data": "hello"
+                }
               }
             ],
             "margin": "xxl",
             "cornerRadius": "xxl",
             "backgroundColor": "#1DB446",
             "justifyContent": "space-between",
-            "alignItems": "center"
+            "alignItems": "center",
+            "action": {
+              "type": "postback",
+              "label": "action",
+              "data": "hello"
+            }
           }
         ],
         "action": {
