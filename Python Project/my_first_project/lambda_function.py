@@ -572,35 +572,31 @@ def handle_postback_todo(event):
         )
 
 #when user tap current ongoing task.
+#Functin: when user tap the highest task in high priority
+#Functin: when user tap second highest task in high priority
+#Functin: when user tap third highest task in high priority
 @handler.add(PostbackEvent)
 def handle_in_progress(event):
-    if event.current.task == "user=taskname":
+    if event.postback.data == "user=taskname":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='Programming'))
         )
-    elif event.high_pritask =="most=highest=task":
+    elif event.postback.data =="most=highest=task":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='task name'))
         )
-    elif event.high_pritask2 == "second=highest=task":
+    elif event.postback.data == "second=highest=task":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='task name 2'))
         )
-    elif event.high_pritask3 == "third=highest=task":
+    elif event.postback.data == "third=highest=task":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='task name 3'))
         )
-
-
-#Functin: when user tap the highest task in high priority
-
-#Functin: when user tap second highest task in high priority
-
-#Functin: when user tap third highest task in high priority
 
 
 @handler.add(FollowEvent)
