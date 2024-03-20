@@ -388,6 +388,7 @@ def handle_message(event):
               "type": "postback",
               "label": "action",
               "data": "hello"
+              "displayText": "何時から開いていますか？"
             }
           }
         ],
@@ -523,6 +524,7 @@ def handle_message(event):
           "type": "postback",
           "label": "action",
           "data": "hellomotherfucker"
+          "displayText": "何時から開いていますか？"
         }
       }
     ]
