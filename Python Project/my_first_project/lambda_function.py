@@ -1158,7 +1158,7 @@ def handle_postback_todo(event):
         )
     elif event.postback.data == "Duration=usr=task":
         bubble_string = """
-        {
+{
   "type": "bubble",
   "body": {
     "type": "box",
@@ -1170,11 +1170,11 @@ def handle_postback_todo(event):
         "contents": [
           {
             "type": "text",
-            "text": "Learn SQL",
+            "text": "Hour : Minutes",
             "weight": "bold",
             "color": "#555555",
-            "align": "center",
-            "size": "xl"
+            "size": "lg",
+            "align": "center"
           },
           {
             "type": "box",
@@ -1270,89 +1270,29 @@ def handle_postback_todo(event):
       },
       {
         "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Choose Task Type",
-            "size": "xl",
-            "color": "#555555",
-            "wrap": true
-          }
-        ],
-        "spacing": "md"
-      },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Duration + Due",
-            "align": "center",
-            "size": "lg",
-            "weight": "bold"
-          }
-        ],
-        "backgroundColor": "#D3D3D3",
-        "cornerRadius": "xxl",
-        "width": "240px",
-        "height": "44px",
-        "paddingTop": "md",
-        "action": {
-          "type": "postback",
-          "label": "Duration and Due",
-          "data": "DurationDue=User=tap",
-          "displayText": "Choose duration and due of task"
-        }
-      },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Duration",
-            "align": "center",
-            "size": "lg",
-            "weight": "bold"
-          }
-        ],
-        "backgroundColor": "#D3D3D3",
-        "cornerRadius": "xxl",
-        "width": "240px",
-        "height": "44px",
-        "paddingTop": "md",
-        "action": {
-          "type": "postback",
-          "label": "Duration of task",
-          "data": "Duration=usr=task",
-          "displayText": "Choose duration of your task"
-        }
-      },
-      {
-        "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "text",
-            "text": "Start + End",
+            "text": "Choose Duration [Hour]",
+            "size": "xl",
+            "color": "#555555",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "Ex) if it 1 hour, type 1.",
+            "color": "#aaaaaa"
+          },
+          {
+            "type": "text",
+            "text": " if it is less than hour, type 0.",
             "align": "center",
-            "size": "lg",
-            "weight": "bold"
+            "margin": "none",
+            "color": "#aaaaaa"
           }
         ],
-        "paddingTop": "md",
-        "width": "240px",
-        "height": "44px",
-        "backgroundColor": "#D3D3D3",
-        "cornerRadius": "xxl",
-        "action": {
-          "type": "postback",
-          "label": "Start time and end time",
-          "data": "Start&end=user=tap",
-          "displayText": "Choose starting time and end time"
-        }
+        "spacing": "md"
       }
     ],
     "spacing": "xl"
@@ -1360,7 +1300,14 @@ def handle_postback_todo(event):
   "footer": {
     "type": "box",
     "layout": "vertical",
-    "contents": [],
+    "contents": [
+      {
+        "type": "text",
+        "text": "Input with Keyboard",
+        "color": "#aaaaaa",
+        "wrap": true
+      }
+    ],
     "justifyContent": "center",
     "alignItems": "center",
     "paddingTop": "4px"
