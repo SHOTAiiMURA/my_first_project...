@@ -557,161 +557,219 @@ def handle_message(event):
             event.reply_token,
             message
         )
-#Function: when user tap action of high priority of "add"
-@handler.add(PostbackEvent)
-def handle_postback_todo(event):
-    if event.postback.data == "add=user=highpriority=task":
+        # user message has to be variable, for now I put some words below.
+    elif send_message == "whatever user input" and isinstance(event.source, SourceUser):
         bubble_string = """
-        {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
+            {
+      "type": "bubble",
+      "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
-            "type": "text",
-            "text": "New Task",
-            "weight": "bold",
-            "color": "#555555",
-            "align": "center",
-            "size": "xl"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Learn SQL",
+                "weight": "bold",
+                "color": "#555555",
+                "align": "center",
+                "size": "xl"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "height": "1px",
+                    "backgroundColor": "#aaaaaa",
+                    "offsetTop": "7px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "backgroundColor": "#00c300",
+                    "height": "3px",
+                    "width": "80%",
+                    "position": "absolute",
+                    "offsetTop": "6px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#00c300",
+                        "cornerRadius": "5px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#00c300",
+                        "cornerRadius": "5px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#00c300",
+                        "cornerRadius": "5px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#00c300",
+                        "cornerRadius": "5px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "14px",
+                        "height": "14px",
+                        "backgroundColor": "#00e600",
+                        "cornerRadius": "7px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "width": "10px",
+                        "height": "10px",
+                        "backgroundColor": "#aaaaaa",
+                        "cornerRadius": "5px"
+                      }
+                    ],
+                    "position": "absolute",
+                    "width": "100%",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                ],
+                "height": "14px"
+              }
+            ],
+            "spacing": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Choose Task Type",
+                "size": "xl",
+                "color": "#555555",
+                "wrap": true
+              }
+            ],
+            "spacing": "md"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Duration + Due",
+                "align": "center",
+                "size": "lg",
+                "weight": "bold"
+              }
+            ],
+            "backgroundColor": "#D3D3D3",
+            "cornerRadius": "xxl",
+            "width": "240px",
+            "height": "44px",
+            "paddingTop": "md",
+            "action": {
+              "type": "postback",
+              "label": "Duration and Due",
+              "data": "DurationDue=User=tap",
+              "displayText": "Choose duration and due of task"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Duration",
+                "align": "center",
+                "size": "lg",
+                "weight": "bold"
+              }
+            ],
+            "backgroundColor": "#D3D3D3",
+            "cornerRadius": "xxl",
+            "width": "240px",
+            "height": "44px",
+            "paddingTop": "md",
+            "action": {
+              "type": "postback",
+              "label": "Duration of task",
+              "data": "Duration=usr=task",
+              "displayText": "Choose duration of your task"
+            }
           },
           {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [],
-                "height": "1px",
-                "backgroundColor": "#aaaaaa",
-                "offsetTop": "7px"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [],
-                "backgroundColor": "#00c300",
-                "height": "3px",
-                "width": "80%",
-                "position": "absolute",
-                "offsetTop": "6px"
-              },
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [],
-                    "width": "10px",
-                    "height": "10px",
-                    "backgroundColor": "#00c300",
-                    "cornerRadius": "5px"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [],
-                    "width": "10px",
-                    "height": "10px",
-                    "backgroundColor": "#00c300",
-                    "cornerRadius": "5px"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [],
-                    "width": "10px",
-                    "height": "10px",
-                    "backgroundColor": "#00c300",
-                    "cornerRadius": "5px"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [],
-                    "width": "10px",
-                    "height": "10px",
-                    "backgroundColor": "#00c300",
-                    "cornerRadius": "5px"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [],
-                    "width": "14px",
-                    "height": "14px",
-                    "backgroundColor": "#00e600",
-                    "cornerRadius": "7px"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [],
-                    "width": "10px",
-                    "height": "10px",
-                    "backgroundColor": "#aaaaaa",
-                    "cornerRadius": "5px"
-                  }
-                ],
-                "position": "absolute",
-                "width": "100%",
-                "justifyContent": "space-between",
-                "alignItems": "center"
+                "type": "text",
+                "text": "Start + End",
+                "align": "center",
+                "size": "lg",
+                "weight": "bold"
               }
             ],
-            "height": "14px"
+            "paddingTop": "md",
+            "width": "240px",
+            "height": "44px",
+            "backgroundColor": "#D3D3D3",
+            "cornerRadius": "xxl",
+            "action": {
+              "type": "postback",
+              "label": "Start time and end time",
+              "data": "Start&end=user=tap",
+              "displayText": "Choose starting time and end time"
+            }
           }
         ],
-        "spacing": "lg"
+        "spacing": "xl"
       },
-      {
+      "footer": {
         "type": "box",
         "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Type task name below",
-            "size": "xl",
-            "color": "#555555",
-            "wrap": true
-          },
-          {
-            "type": "text",
-            "text": "Ex) learn SQL",
-            "color": "#aaaaaa"
-          }
-        ],
-        "spacing": "md"
+        "contents": [],
+        "justifyContent": "center",
+        "alignItems": "center",
+        "paddingTop": "4px"
       }
-    ],
-    "spacing": "xl"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": "Input with Keyboard",
-        "color": "#aaaaaa",
-        "wrap": true
-      }
-    ],
-    "justifyContent": "center",
-    "alignItems": "center",
-    "paddingTop": "4px"
-  }
-}
-"""
-        message = FlexSendMessage(alt_text="add task", contents=json.loads(bubble_string))
+    }
+    """
+        message = FlexSendMessage(alt_text="whatever user input", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
             event.reply_token,
             message
@@ -933,6 +991,166 @@ def handle_postback_todo(event):
             event.reply_token,
             message
         )
+#Function: when user tap action of high priority of "add"
+@handler.add(PostbackEvent)
+def handle_postback_todo(event):
+    if event.postback.data == "add=user=highpriority=task":
+        bubble_string = """
+        {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "New Task",
+            "weight": "bold",
+            "color": "#555555",
+            "align": "center",
+            "size": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "height": "1px",
+                "backgroundColor": "#aaaaaa",
+                "offsetTop": "7px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "backgroundColor": "#00c300",
+                "height": "3px",
+                "width": "80%",
+                "position": "absolute",
+                "offsetTop": "6px"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "14px",
+                    "height": "14px",
+                    "backgroundColor": "#00e600",
+                    "cornerRadius": "7px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#aaaaaa",
+                    "cornerRadius": "5px"
+                  }
+                ],
+                "position": "absolute",
+                "width": "100%",
+                "justifyContent": "space-between",
+                "alignItems": "center"
+              }
+            ],
+            "height": "14px"
+          }
+        ],
+        "spacing": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Type task name below",
+            "size": "xl",
+            "color": "#555555",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "Ex) learn SQL",
+            "color": "#aaaaaa"
+          }
+        ],
+        "spacing": "md"
+      }
+    ],
+    "spacing": "xl"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Input with Keyboard",
+        "color": "#aaaaaa",
+        "wrap": true
+      }
+    ],
+    "justifyContent": "center",
+    "alignItems": "center",
+    "paddingTop": "4px"
+  }
+}
+"""
+        message = FlexSendMessage(alt_text="add task", contents=json.loads(bubble_string))
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
+
 
 #when usr tap add of medium priority
     elif event.postback.data == "add=user=medpriority=ask":
