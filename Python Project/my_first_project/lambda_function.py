@@ -399,8 +399,8 @@ def handle_message(event):
                     "action": {
                       "type": "postback",
                       "label": "Add Task",
-                      "data": "hello",
-                      "displayText": "Hellomotherfucker"
+                      "data": "add=user=highpriority=task",
+                      "displayText": "add task"
                     }
                   }
                 ],
@@ -414,7 +414,7 @@ def handle_message(event):
             "action": {
               "type": "postback",
               "label": "action",
-              "data": "hello"
+              "data": "add=user=highpriority=task"
             }
           }
         ]
@@ -523,8 +523,8 @@ def handle_message(event):
                     "action": {
                       "type": "postback",
                       "label": "Add Task",
-                      "data": "hello2",
-                      "displayText": "Hellomotherfucker"
+                      "data": "add=user=medpriority=task",
+                      "displayText": "Add task"
                     }
                   }
                 ],
@@ -538,7 +538,7 @@ def handle_message(event):
             "action": {
               "type": "postback",
               "label": "action",
-              "data": "hello"
+              "data": "add=user=medpriority=task"
             }
           }
         ]
@@ -557,15 +557,164 @@ def handle_message(event):
             event.reply_token,
             message
         )
-#Function: when user tap action of high priority
+#Function: when user tap action of high priority of "add"
 @handler.add(PostbackEvent)
 def handle_postback_todo(event):
-    if event.postback.data == "hello":
+    if event.postback.data == "add=user=highpriority=task":
+        bubble_string = """
+        {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "New Task",
+            "weight": "bold",
+            "color": "#555555",
+            "align": "center",
+            "size": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "height": "1px",
+                "backgroundColor": "#aaaaaa",
+                "offsetTop": "7px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "backgroundColor": "#00c300",
+                "height": "3px",
+                "width": "80%",
+                "position": "absolute",
+                "offsetTop": "6px"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "14px",
+                    "height": "14px",
+                    "backgroundColor": "#00e600",
+                    "cornerRadius": "7px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#aaaaaa",
+                    "cornerRadius": "5px"
+                  }
+                ],
+                "position": "absolute",
+                "width": "100%",
+                "justifyContent": "space-between",
+                "alignItems": "center"
+              }
+            ],
+            "height": "14px"
+          }
+        ],
+        "spacing": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Type task name below",
+            "size": "xl",
+            "color": "#555555",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "Ex) learn SQL",
+            "color": "#aaaaaa"
+          }
+        ],
+        "spacing": "md"
+      }
+    ],
+    "spacing": "xl"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Input with Keyboard",
+        "color": "#aaaaaa",
+        "wrap": true
+      }
+    ],
+    "justifyContent": "center",
+    "alignItems": "center",
+    "paddingTop": "4px"
+  }
+}
+"""
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text='you are awesome!!'))
         )
-    elif event.postback.data == "hello2":
+    elif event.postback.data == "add=user=medpriority=ask":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='you are fucking cool'))
