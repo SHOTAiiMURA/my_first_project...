@@ -711,8 +711,10 @@ def handle_postback_todo(event):
   }
 }
 """
+        message = FlexSendMessage(alt_text="add task", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
             event.reply_token,
+            message
         )
     elif event.postback.data == "add=user=medpriority=ask":
         line_bot_api.reply_message(
