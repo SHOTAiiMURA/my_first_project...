@@ -572,7 +572,7 @@ def handle_postback_todo(event):
         )
     elif event.postback.data == "user=taskname":
         bubble_string = """
-        {
+{
   "type": "bubble",
   "body": {
     "type": "box",
@@ -765,7 +765,13 @@ def handle_postback_todo(event):
             ],
             "backgroundColor": "#00c300",
             "paddingAll": "md",
-            "cornerRadius": "xxl"
+            "cornerRadius": "xxl",
+            "action": {
+              "type": "postback",
+              "label": "finish action",
+              "data": "finish=user=tap",
+              "displayText": "Finish Task"
+            }
           },
           {
             "type": "box",
@@ -793,7 +799,13 @@ def handle_postback_todo(event):
                     "align": "center",
                     "size": "xs"
                   }
-                ]
+                ],
+                "action": {
+                  "type": "postback",
+                  "label": "extend time",
+                  "data": "extend=20minutes=task",
+                  "displayText": "extend 20 minutes"
+                }
               },
               {
                 "type": "box",
@@ -805,7 +817,13 @@ def handle_postback_todo(event):
                     "align": "center",
                     "size": "xs"
                   }
-                ]
+                ],
+                "action": {
+                  "type": "postback",
+                  "label": "extend time",
+                  "data": "extend=40minutes=task",
+                  "displayText": "extend 40 minutes"
+                }
               },
               {
                 "type": "box",
@@ -817,7 +835,13 @@ def handle_postback_todo(event):
                     "align": "center",
                     "size": "xs"
                   }
-                ]
+                ],
+                "action": {
+                  "type": "postback",
+                  "label": "extend time",
+                  "data": "extend=1hour=task",
+                  "displayText": "extend 1 hour"
+                }
               }
             ],
             "margin": "lg"
@@ -836,7 +860,13 @@ def handle_postback_todo(event):
                     "align": "center",
                     "size": "xs"
                   }
-                ]
+                ],
+                "action": {
+                  "type": "postback",
+                  "label": "extend time",
+                  "data": "extend=2hours=task",
+                  "displayText": "extend 2 hours"
+                }
               },
               {
                 "type": "box",
@@ -848,7 +878,13 @@ def handle_postback_todo(event):
                     "align": "center",
                     "size": "xs"
                   }
-                ]
+                ],
+                "action": {
+                  "type": "postback",
+                  "label": "extend time",
+                  "data": "extend=tomorrow=task",
+                  "displayText": "extend due by tomorrow"
+                }
               },
               {
                 "type": "box",
@@ -860,7 +896,13 @@ def handle_postback_todo(event):
                     "align": "center",
                     "size": "xs"
                   }
-                ]
+                ],
+                "action": {
+                  "type": "postback",
+                  "label": "extend time",
+                  "data": "extend=nextweek=task",
+                  "displayText": "extend due by next week"
+                }
               }
             ],
             "margin": "lg"
