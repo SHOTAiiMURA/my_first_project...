@@ -1691,7 +1691,572 @@ def handle_postback_todo(event):
             event.reply_token,
             (TextSendMessage(text='need to create flex'))
         )
+#let user to input priority type
+    elif event.postback.data == "high=priority=user":
+        bubble_string = """
+        {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Programming [1:30]",
+            "weight": "bold",
+            "color": "#555555",
+            "size": "lg",
+            "align": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "height": "1px",
+                "backgroundColor": "#aaaaaa",
+                "offsetTop": "7px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "backgroundColor": "#00c300",
+                "height": "3px",
+                "width": "80%",
+                "position": "absolute",
+                "offsetTop": "6px"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "14px",
+                    "height": "14px",
+                    "backgroundColor": "#00e600",
+                    "cornerRadius": "7px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#aaaaaa",
+                    "cornerRadius": "5px"
+                  }
+                ],
+                "position": "absolute",
+                "width": "100%",
+                "justifyContent": "space-between",
+                "alignItems": "center"
+              }
+            ],
+            "height": "14px"
+          }
+        ],
+        "spacing": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Confirm New Task",
+            "size": "xl",
+            "color": "#555555",
+            "wrap": true
+          }
+        ],
+        "spacing": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Confirm",
+                "align": "center"
+              }
+            ],
+            "backgroundColor": "#00c300",
+            "cornerRadius": "xxl",
+            "action": {
+              "type": "postback",
+              "label": "confirm task",
+              "displayText": "Confrim",
+              "data": "confirm=user=task"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Cancel",
+                "align": "center"
+              }
+            ],
+            "backgroundColor": "#aaaaaa",
+            "cornerRadius": "xxl",
+            "action": {
+              "type": "postback",
+              "label": "cancel task",
+              "data": "cancel=user=task",
+              "displayText": "Cancel"
+            }
+          }
+        ]
+      }
+    ],
+    "spacing": "xl"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [],
+    "justifyContent": "center",
+    "alignItems": "center",
+    "paddingTop": "4px"
+  }
+}
+"""
+        message = FlexSendMessage(alt_text="high priority", contents=json.loads(bubble_string))
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
+    elif event.postback.data == "Choose=medium=priority":
+        bubble_string = """
+                {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Programming [1:30]",
+                    "weight": "bold",
+                    "color": "#555555",
+                    "size": "lg",
+                    "align": "center"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "height": "1px",
+                        "backgroundColor": "#aaaaaa",
+                        "offsetTop": "7px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "backgroundColor": "#00c300",
+                        "height": "3px",
+                        "width": "80%",
+                        "position": "absolute",
+                        "offsetTop": "6px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#00c300",
+                            "cornerRadius": "5px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#00c300",
+                            "cornerRadius": "5px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#00c300",
+                            "cornerRadius": "5px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#00c300",
+                            "cornerRadius": "5px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "14px",
+                            "height": "14px",
+                            "backgroundColor": "#00e600",
+                            "cornerRadius": "7px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#aaaaaa",
+                            "cornerRadius": "5px"
+                          }
+                        ],
+                        "position": "absolute",
+                        "width": "100%",
+                        "justifyContent": "space-between",
+                        "alignItems": "center"
+                      }
+                    ],
+                    "height": "14px"
+                  }
+                ],
+                "spacing": "lg"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Confirm New Task",
+                    "size": "xl",
+                    "color": "#555555",
+                    "wrap": true
+                  }
+                ],
+                "spacing": "md"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "Confirm",
+                        "align": "center"
+                      }
+                    ],
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "xxl",
+                    "action": {
+                      "type": "postback",
+                      "label": "confirm task",
+                      "displayText": "Confrim",
+                      "data": "confirm=user=task"
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "Cancel",
+                        "align": "center"
+                      }
+                    ],
+                    "backgroundColor": "#aaaaaa",
+                    "cornerRadius": "xxl",
+                    "action": {
+                      "type": "postback",
+                      "label": "cancel task",
+                      "data": "cancel=user=task",
+                      "displayText": "Cancel"
+                    }
+                  }
+                ]
+              }
+            ],
+            "spacing": "xl"
+          },
+          "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "justifyContent": "center",
+            "alignItems": "center",
+            "paddingTop": "4px"
+          }
+        }
+        """
+        message = FlexSendMessage(alt_text="medium priority", contents=json.loads(bubble_string))
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
 
+    elif event.postback.data == "Choose=low=priority":
+        bubble_string = """
+                {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Programming [1:30]",
+                    "weight": "bold",
+                    "color": "#555555",
+                    "size": "lg",
+                    "align": "center"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "height": "1px",
+                        "backgroundColor": "#aaaaaa",
+                        "offsetTop": "7px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "backgroundColor": "#00c300",
+                        "height": "3px",
+                        "width": "80%",
+                        "position": "absolute",
+                        "offsetTop": "6px"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#00c300",
+                            "cornerRadius": "5px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#00c300",
+                            "cornerRadius": "5px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#00c300",
+                            "cornerRadius": "5px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#00c300",
+                            "cornerRadius": "5px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "14px",
+                            "height": "14px",
+                            "backgroundColor": "#00e600",
+                            "cornerRadius": "7px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "width": "10px",
+                            "height": "10px",
+                            "backgroundColor": "#aaaaaa",
+                            "cornerRadius": "5px"
+                          }
+                        ],
+                        "position": "absolute",
+                        "width": "100%",
+                        "justifyContent": "space-between",
+                        "alignItems": "center"
+                      }
+                    ],
+                    "height": "14px"
+                  }
+                ],
+                "spacing": "lg"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Confirm New Task",
+                    "size": "xl",
+                    "color": "#555555",
+                    "wrap": true
+                  }
+                ],
+                "spacing": "md"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "Confirm",
+                        "align": "center"
+                      }
+                    ],
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "xxl",
+                    "action": {
+                      "type": "postback",
+                      "label": "confirm task",
+                      "displayText": "Confrim",
+                      "data": "confirm=user=task"
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "Cancel",
+                        "align": "center"
+                      }
+                    ],
+                    "backgroundColor": "#aaaaaa",
+                    "cornerRadius": "xxl",
+                    "action": {
+                      "type": "postback",
+                      "label": "cancel task",
+                      "data": "cancel=user=task",
+                      "displayText": "Cancel"
+                    }
+                  }
+                ]
+              }
+            ],
+            "spacing": "xl"
+          },
+          "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "justifyContent": "center",
+            "alignItems": "center",
+            "paddingTop": "4px"
+          }
+        }
+        """
+        message = FlexSendMessage(alt_text="low priority", contents=json.loads(bubble_string))
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
 #when usr tap add of medium priority
     elif event.postback.data == "add=user=medpriority=ask":
         line_bot_api.reply_message(
