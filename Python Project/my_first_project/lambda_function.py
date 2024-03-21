@@ -1149,6 +1149,214 @@ def handle_message(event):
             message
         )
 
+#when user input varible, but for now put certain number
+    elif send_message == "45" and isinstance(event.source, SourceUser):
+        bubble_string = """
+        {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Programming [1:30]",
+            "weight": "bold",
+            "color": "#555555",
+            "size": "lg",
+            "align": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "height": "1px",
+                "backgroundColor": "#aaaaaa",
+                "offsetTop": "7px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [],
+                "backgroundColor": "#00c300",
+                "height": "3px",
+                "width": "80%",
+                "position": "absolute",
+                "offsetTop": "6px"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#00c300",
+                    "cornerRadius": "5px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "14px",
+                    "height": "14px",
+                    "backgroundColor": "#00e600",
+                    "cornerRadius": "7px"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "10px",
+                    "height": "10px",
+                    "backgroundColor": "#aaaaaa",
+                    "cornerRadius": "5px"
+                  }
+                ],
+                "position": "absolute",
+                "width": "100%",
+                "justifyContent": "space-between",
+                "alignItems": "center"
+              }
+            ],
+            "height": "14px"
+          }
+        ],
+        "spacing": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Choose Priority",
+            "size": "xl",
+            "color": "#555555",
+            "wrap": true
+          }
+        ],
+        "spacing": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "High",
+                "align": "center"
+              }
+            ],
+            "backgroundColor": "#FF5733",
+            "cornerRadius": "xxl",
+            "action": {
+              "type": "postback",
+              "label": "choose priority",
+              "data": "high=priority=user",
+              "displayText": "High Priority"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Medium",
+                "align": "center"
+              }
+            ],
+            "backgroundColor": "#33A9FF",
+            "cornerRadius": "xxl",
+            "action": {
+              "type": "postback",
+              "label": "Choose priority",
+              "data": "Choose=medium=priority",
+              "displayText": "Medium Priority"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Low",
+                "align": "center"
+              }
+            ],
+            "backgroundColor": "#3AFF33",
+            "cornerRadius": "xxl",
+            "action": {
+              "type": "postback",
+              "label": "choose priority",
+              "data": "Choose=low=priority",
+              "displayText": "Low Priority"
+            }
+          }
+        ]
+      }
+    ],
+    "spacing": "xl"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [],
+    "justifyContent": "center",
+    "alignItems": "center",
+    "paddingTop": "4px"
+  }
+}
+"""
+        message = FlexSendMessage(alt_text="45", contents=json.loads(bubble_string))
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
 #Function: when user tap action of high priority of "add"
 @handler.add(PostbackEvent)
 def handle_postback_todo(event):
@@ -1477,11 +1685,13 @@ def handle_postback_todo(event):
             event.reply_token,
             message
         )
+
     elif event.postback.data == "Start&end=user=tap":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='need to create flex'))
         )
+
 #when usr tap add of medium priority
     elif event.postback.data == "add=user=medpriority=ask":
         line_bot_api.reply_message(
