@@ -87,7 +87,7 @@ def lambda_handler(event, context):
 @handler.add(MessageEvent, message=TextMessage)
 def message(event):
     text = event.message.text
-    template_add1 = {
+    template_add1 ={
       "type": "bubble",
       "body": {
         "type": "box",
@@ -119,8 +119,7 @@ def message(event):
                 "type": "text",
                 "text": "Type task name below",
                 "size": "xl",
-                "color": "#555555",
-                "wrap": "true"
+                "color": "#555555"
               },
               {
                 "type": "text",
@@ -140,8 +139,7 @@ def message(event):
           {
             "type": "text",
             "text": "Input with Keyboard",
-            "color": "#aaaaaa",
-            "wrap": "true"
+            "color": "#aaaaaa"
           }
         ],
         "justifyContent": "center",
@@ -150,7 +148,7 @@ def message(event):
       }
     }
     flex_message = FlexSendMessage(
-        alt_text="this is aljjt_text",
+        alt_text="add new task",
         contents=template_add1
     )
     line_bot_api.reply_message(event.reply_token, flex_message)
