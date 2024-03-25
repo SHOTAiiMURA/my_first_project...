@@ -67,6 +67,7 @@ def lambda_handler(event, context):
                   "headers": {},
                   "body": "Error"}
 
+
     # 例外処理としての動作
     try:
         handler.handle(body, signature)
@@ -84,35 +85,75 @@ def lambda_handler(event, context):
 # 以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 #各機能のボタン部分を作成
 @handler.add(MessageEvent, message=TextMessage)
-def handle_message(payload):
-    payload = {
-        "type": "bubble",
-        "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                    "type": "text",
-                    "text": "Brown Cafe",
-                    "weight": "bold",
-                    "size": "xl"
-                },
-                {
-                    "type": "button",
-                    "action": {
-                        "type": "uri",
-                        "label": "button",
-                        "uri": "http://linecorp.com/"
-                    },
-                    "style": "primary"
-                }
-            ]
-        }
-    }
+def message(event):
+    text = event.message.text
+    template_add1 = {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "New Task",
+            "weight": "bold",
+            "color": "#555555",
+            "align": "center",
+            "size": "xl"
+          },
+          {
+            "type": "separator"
+          }
+        ],
+        "spacing": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Type task name below",
+            "size": "xl",
+            "color": "#555555",
+            "wrap": "true"
+          },
+          {
+            "type": "text",
+            "text": "Ex) learn SQL",
+            "color": "#aaaaaa"
+          }
+        ],
+        "spacing": "md"
+      }
+    ],
+    "spacing": "xl"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Input with Keyboard",
+        "color": "#aaaaaa",
+        "wrap": "true"
+      }
+    ],
+    "justifyContent": "center",
+    "alignItems": "center",
+    "paddingTop": "4px"
+  }
+}
     flex_message = FlexSendMessage(
-        alt_text='this is aljjt_text',
-        contents=payload
+        alt_text="this is aljjt_text",
+        contents=template_add1
     )
+    line_bot_api.reply_message(event.reply_token, flex_message)
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
