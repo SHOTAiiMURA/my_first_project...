@@ -110,7 +110,7 @@ def handle_message(payload):
         }
     }
     flex_message = FlexSendMessage(
-        alt_text='this is alt_text',
+        alt_text='this is aljjt_text',
         contents=payload
     )
 @handler.add(FollowEvent)
