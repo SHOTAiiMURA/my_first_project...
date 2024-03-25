@@ -88,67 +88,67 @@ def lambda_handler(event, context):
 def message(event):
     text = event.message.text
     template_add1 = {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
+      "type": "bubble",
+      "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
-            "type": "text",
-            "text": "New Task",
-            "weight": "bold",
-            "color": "#555555",
-            "align": "center",
-            "size": "xl"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "New Task",
+                "weight": "bold",
+                "color": "#555555",
+                "align": "center",
+                "size": "xl"
+              },
+              {
+                "type": "separator"
+              }
+            ],
+            "spacing": "lg"
           },
           {
-            "type": "separator"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Type task name below",
+                "size": "xl",
+                "color": "#555555",
+                "wrap": "true"
+              },
+              {
+                "type": "text",
+                "text": "Ex) learn SQL",
+                "color": "#aaaaaa"
+              }
+            ],
+            "spacing": "md"
           }
         ],
-        "spacing": "lg"
+        "spacing": "xl"
       },
-      {
+      "footer": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "text",
-            "text": "Type task name below",
-            "size": "xl",
-            "color": "#555555",
+            "text": "Input with Keyboard",
+            "color": "#aaaaaa",
             "wrap": "true"
-          },
-          {
-            "type": "text",
-            "text": "Ex) learn SQL",
-            "color": "#aaaaaa"
           }
         ],
-        "spacing": "md"
+        "justifyContent": "center",
+        "alignItems": "center",
+        "paddingTop": "4px"
       }
-    ],
-    "spacing": "xl"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": "Input with Keyboard",
-        "color": "#aaaaaa",
-        "wrap": "true"
-      }
-    ],
-    "justifyContent": "center",
-    "alignItems": "center",
-    "paddingTop": "4px"
-  }
-}
+    }
     flex_message = FlexSendMessage(
         alt_text="this is aljjt_text",
         contents=template_add1
