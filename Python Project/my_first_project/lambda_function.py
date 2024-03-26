@@ -84,9 +84,32 @@ def lambda_handler(event, context):
 
 # 以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 #各機能のボタン部分を作成
-@handler.add(MessageEvent, message=TextMessage)
-def message(event):
-    text = event.message.text
+#add handler for rich menu
+@handler.add(PostbackEvent)
+def on_postback(event):
+    reply_token = event.reply_token
+    user_id = event.source.user_id
+    postback_msg = event.postback.data
+    message_to_user = []
+
+    if postback_msg == '012':
+        message_to_user.append(TextSendMessage(text='hello'))
+
+    # ユーザーに送信するメッセージが存在しない場合
+    if len(message_to_user) == 0:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='invalid message'),
+        )
+    # メッセージが存在する場合は送信
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            message_to_user,
+        )
+def message(text,event):
+    if text == "View" or "view":
+        text = event.message.text
     template_add1 ={
       "type": "bubble",
       "body": {
@@ -152,7 +175,7 @@ def message(event):
         contents=template_add1
     )
     line_bot_api.reply_message(event.reply_token, flex_message)
-
+@handler.add(MessageEvent, message=TextMessage)
 def user_send_message(event, user_int_message):
     text = event.message.text
     text.update(user_int_message)
