@@ -85,10 +85,12 @@ def lambda_handler(event, context):
 # 以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 #各機能のボタン部分を作成
 #add handler for rich menu
+template_add1 = None
 @handler.add(PostbackEvent)
 def message(text,event):
+    global template_add1
     text = event.message.text
-    if text == "View" or "view":
+    if text == "View" or text == "view":
         template_add1 ={
           "type": "bubble",
           "body": {
@@ -155,10 +157,10 @@ def message(text,event):
         )
         line_bot_api.reply_message(event.reply_token, flex_message)
 @handler.add(MessageEvent, message=TextMessage)
-def user_send_message(event, user_int_message):
-    text = []
-    text.update(user_int_message)
-    print(user_int_message)
+# def user_send_message(event, user_int_message):
+#     text =
+#     text.update(user_int_message)
+#     print(user_int_message)
 def send_message(user_int_message,event2):
     text = event2.message.text
     if text == user_int_message: #ユーザーが送ったタスク名:
