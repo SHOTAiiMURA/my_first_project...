@@ -156,8 +156,8 @@ def message(text,event):
         line_bot_api.reply_message(event.reply_token, flex_message)
 @handler.add(MessageEvent, message=TextMessage)
 def user_send_message(event, user_int_message):
-    text = event.message.text
-    text.append(user_int_message)
+    text = []
+    text.update(user_int_message)
     print(user_int_message)
 def send_message(user_int_message,event2):
     text = event2.message.text
