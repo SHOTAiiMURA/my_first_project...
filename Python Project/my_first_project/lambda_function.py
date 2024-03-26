@@ -86,95 +86,74 @@ def lambda_handler(event, context):
 #各機能のボタン部分を作成
 #add handler for rich menu
 @handler.add(PostbackEvent)
-def on_postback(event):
-    reply_token = event.reply_token
-    user_id = event.source.user_id
-    postback_msg = event.postback.data
-    message_to_user = []
-
-    if postback_msg == '012':
-        message_to_user.append(TextSendMessage(text='hello'))
-
-    # ユーザーに送信するメッセージが存在しない場合
-    if len(message_to_user) == 0:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='invalid message'),
-        )
-    # メッセージが存在する場合は送信
-    else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            message_to_user,
-        )
 def message(text,event):
+    text = event.message.text
     if text == "View" or "view":
-        text = event.message.text
-    template_add1 ={
-      "type": "bubble",
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
+        template_add1 ={
+          "type": "bubble",
+          "body": {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
-                "type": "text",
-                "text": "New Task",
-                "weight": "bold",
-                "color": "#555555",
-                "align": "center",
-                "size": "xl"
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "New Task",
+                    "weight": "bold",
+                    "color": "#555555",
+                    "align": "center",
+                    "size": "xl"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ],
+                "spacing": "lg"
               },
               {
-                "type": "separator"
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Type task name below",
+                    "size": "xl",
+                    "color": "#555555"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Ex) learn SQL",
+                    "color": "#aaaaaa"
+                  }
+                ],
+                "spacing": "md"
               }
             ],
-            "spacing": "lg"
+            "spacing": "xl"
           },
-          {
+          "footer": {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
                 "type": "text",
-                "text": "Type task name below",
-                "size": "xl",
-                "color": "#555555"
-              },
-              {
-                "type": "text",
-                "text": "Ex) learn SQL",
+                "text": "Input with Keyboard",
                 "color": "#aaaaaa"
               }
             ],
-            "spacing": "md"
+            "justifyContent": "center",
+            "alignItems": "center",
+            "paddingTop": "4px"
           }
-        ],
-        "spacing": "xl"
-      },
-      "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Input with Keyboard",
-            "color": "#aaaaaa"
-          }
-        ],
-        "justifyContent": "center",
-        "alignItems": "center",
-        "paddingTop": "4px"
-      }
-    }
-    flex_message = FlexSendMessage(
-        alt_text="add new task",
-        contents=template_add1
-    )
-    line_bot_api.reply_message(event.reply_token, flex_message)
+        }
+        flex_message = FlexSendMessage(
+            alt_text="add new task",
+            contents=template_add1
+        )
+        line_bot_api.reply_message(event.reply_token, flex_message)
 @handler.add(MessageEvent, message=TextMessage)
 def user_send_message(event, user_int_message):
     text = event.message.text
