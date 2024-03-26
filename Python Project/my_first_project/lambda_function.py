@@ -157,7 +157,7 @@ def message(text,event):
 @handler.add(MessageEvent, message=TextMessage)
 def user_send_message(event, user_int_message):
     text = event.message.text
-    text.update(user_int_message)
+    text.append(user_int_message)
     print(user_int_message)
 def send_message(user_int_message,event2):
     text = event2.message.text
