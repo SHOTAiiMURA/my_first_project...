@@ -85,10 +85,8 @@ def lambda_handler(event, context):
 # 以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 #各機能のボタン部分を作成
 #add handler for rich menu
-template_add1 = None
 @handler.add(PostbackEvent)
 def message(text,event):
-    global template_add1
     text = event.message.text
     if text == "View" or text == "view":
         template_add1 ={
@@ -152,8 +150,7 @@ def message(text,event):
           }
         }
         flex_message = FlexSendMessage(
-            alt_text="add new task",
-            contents=template_add1
+            alt_text="add new task"
         )
         line_bot_api.reply_message(event.reply_token, flex_message)
 @handler.add(MessageEvent, message=TextMessage)
