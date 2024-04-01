@@ -166,7 +166,136 @@ def handle_message(event):
             event.reply_token,
             message
         )
-
+    elif send_message == "Programming" and isinstance(event.source, SourceUser):
+        add_task_2 = """
+        {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Learn SQL",
+            "weight": "bold",
+            "color": "#555555",
+            "align": "center",
+            "size": "xl"
+          },
+          {
+            "type": "separator"
+          }
+        ],
+        "spacing": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Choose Task Type",
+            "size": "xl",
+            "color": "#555555",
+            "wrap": true
+          }
+        ],
+        "spacing": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Duration + Due",
+            "align": "center",
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "backgroundColor": "#D3D3D3",
+        "cornerRadius": "xxl",
+        "width": "240px",
+        "height": "44px",
+        "paddingTop": "md",
+        "action": {
+          "type": "postback",
+          "label": "Duration and Due",
+          "data": "DurationDue=User=tap",
+          "displayText": "Choose duration and due of task"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Duration",
+            "align": "center",
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "backgroundColor": "#D3D3D3",
+        "cornerRadius": "xxl",
+        "width": "240px",
+        "height": "44px",
+        "paddingTop": "md",
+        "action": {
+          "type": "postback",
+          "label": "Duration of task",
+          "data": "Duration=usr=task",
+          "displayText": "Choose duration of your task"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Start + End",
+            "align": "center",
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "paddingTop": "md",
+        "width": "240px",
+        "height": "44px",
+        "backgroundColor": "#D3D3D3",
+        "cornerRadius": "xxl",
+        "action": {
+          "type": "postback",
+          "label": "Start time and end time",
+          "data": "Start&end=user=tap",
+          "displayText": "Choose starting time and end time"
+        }
+      }
+    ],
+    "spacing": "xl"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [],
+    "justifyContent": "center",
+    "alignItems": "center",
+    "paddingTop": "4px"
+  }
+}
+        """
+        message = FlexSendMessage(alt_text="タスクタイプを選択", contents=json.loads(add_task_2))
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
