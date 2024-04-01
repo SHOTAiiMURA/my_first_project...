@@ -98,12 +98,73 @@ def handle_message(event):
     else:
         print("user profile can't not use")
 
-    if send_message == "action" and isinstance(event.source, SourceUser):
+    if send_message == "Add" and isinstance(event.source, SourceUser):
+        add_task_1 = """"{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "New Task",
+            "weight": "bold",
+            "color": "#555555",
+            "align": "center",
+            "size": "xl"
+          },
+          {
+            "type": "separator"
+          }
+        ],
+        "spacing": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Type task name below",
+            "size": "xl",
+            "color": "#555555"
+          },
+          {
+            "type": "text",
+            "text": "Ex) learn SQL",
+            "color": "#aaaaaa"
+          }
+        ],
+        "spacing": "md"
+      }
+    ],
+    "spacing": "xl"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Input with Keyboard",
+        "color": "#aaaaaa"
+      }
+    ],
+    "justifyContent": "center",
+    "alignItems": "center",
+    "paddingTop": "4px"
+  }
+}
+"""
+        message = FlexSendMessage(alt_text="タスクを追加する", contents=json.loads(add_task_1))
         line_bot_api.reply_message(
             event.reply_token,
-            (ImageSendMessage(
-                original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png",
-                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/cafe_menu.png")))
+            message
+        )
 
 @handler.add(FollowEvent)
 def handle_follow(event):
