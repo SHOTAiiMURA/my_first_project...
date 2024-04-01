@@ -99,7 +99,8 @@ def handle_message(event):
         print("user profile can't not use")
 
     if send_message == "Add" and isinstance(event.source, SourceUser):
-        add_task_1 = """"{
+        add_task_1 = """
+        {
   "type": "bubble",
   "body": {
     "type": "box",
