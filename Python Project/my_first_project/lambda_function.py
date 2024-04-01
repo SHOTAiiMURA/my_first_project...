@@ -85,74 +85,75 @@ def lambda_handler(event, context):
 # 以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 #各機能のボタン部分を作成
 #add handler for rich menu
-@handler.add(PostbackEvent)
+#@handler.add(PostbackEvent)
+@handler.add(MessageEvent, message=TextMessage)
 def message(text,event):
     text = event.message.text
-    if text == "View" or text == "view":
-        template_add1 ={
-          "type": "bubble",
-          "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "New Task",
-                    "weight": "bold",
-                    "color": "#555555",
-                    "align": "center",
-                    "size": "xl"
-                  },
-                  {
-                    "type": "separator"
-                  }
-                ],
-                "spacing": "lg"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "Type task name below",
-                    "size": "xl",
-                    "color": "#555555"
-                  },
-                  {
-                    "type": "text",
-                    "text": "Ex) learn SQL",
-                    "color": "#aaaaaa"
-                  }
-                ],
-                "spacing": "md"
-              }
-            ],
-            "spacing": "xl"
-          },
-          "footer": {
+    template_add1 ={
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
             "type": "box",
             "layout": "vertical",
             "contents": [
               {
                 "type": "text",
-                "text": "Input with Keyboard",
+                "text": "New Task",
+                "weight": "bold",
+                "color": "#555555",
+                "align": "center",
+                "size": "xl"
+              },
+              {
+                "type": "separator"
+              }
+            ],
+            "spacing": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Type task name below",
+                "size": "xl",
+                "color": "#555555"
+              },
+              {
+                "type": "text",
+                "text": "Ex) learn SQL",
                 "color": "#aaaaaa"
               }
             ],
-            "justifyContent": "center",
-            "alignItems": "center",
-            "paddingTop": "4px"
+            "spacing": "md"
           }
-        }
-        flex_message = FlexSendMessage(
-            alt_text="add new task"
-        )
-        line_bot_api.reply_message(event.reply_token, flex_message)
+        ],
+        "spacing": "xl"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Input with Keyboard",
+            "color": "#aaaaaa"
+          }
+        ],
+        "justifyContent": "center",
+        "alignItems": "center",
+        "paddingTop": "4px"
+      }
+    }
+    flex_message = FlexSendMessage(
+        alt_text="add new task",
+        contents=template_add1
+    )
+    line_bot_api.reply_message(event.reply_token, flex_message)
 @handler.add(MessageEvent, message=TextMessage)
 # def user_send_message(event, user_int_message):
 #     text =
