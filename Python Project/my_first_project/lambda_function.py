@@ -166,8 +166,11 @@ def handle_message(event):
             event.reply_token,
             message
         )
-    elif send_message == "Programming" and isinstance(event.source, SourceUser):
-        add_task_2 = """
+def user_task_input(user_input,send_message,event):
+    user_input = int(" ")
+
+    if send_message == user_input and isinstance(event.source, SourceUser):
+        add_task_2 =
         {
   "type": "bubble",
   "body": {
@@ -290,7 +293,6 @@ def handle_message(event):
     "paddingTop": "4px"
   }
 }
-        """
         message = FlexSendMessage(alt_text="タスクタイプを選択", contents=json.loads(add_task_2))
         line_bot_api.reply_message(
             event.reply_token,
