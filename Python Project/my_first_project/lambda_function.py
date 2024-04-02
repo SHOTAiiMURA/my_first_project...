@@ -182,7 +182,7 @@ def user_task_input(user_input,send_message,event):
         "contents": [
           {
             "type": "text",
-            "text": str(user_input),
+            "text": user_input,
             "weight": "bold",
             "color": "#555555",
             "align": "center",
@@ -296,6 +296,7 @@ def user_task_input(user_input,send_message,event):
             event.reply_token,
             message
         )
+    user_task_input(user_input,send_message,event)
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
