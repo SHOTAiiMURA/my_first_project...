@@ -170,8 +170,7 @@ def user_task_input(user_input,send_message,event):
     user_input = int(" ")
 
     if send_message == user_input and isinstance(event.source, SourceUser):
-        add_task_2 =
-        {
+        add_task_2 ={
   "type": "bubble",
   "body": {
     "type": "box",
@@ -183,7 +182,7 @@ def user_task_input(user_input,send_message,event):
         "contents": [
           {
             "type": "text",
-            "text": "Learn SQL",
+            "text": str(user_input),
             "weight": "bold",
             "color": "#555555",
             "align": "center",
@@ -203,8 +202,7 @@ def user_task_input(user_input,send_message,event):
             "type": "text",
             "text": "Choose Task Type",
             "size": "xl",
-            "color": "#555555",
-            "wrap": true
+            "color": "#555555"
           }
         ],
         "spacing": "md"
