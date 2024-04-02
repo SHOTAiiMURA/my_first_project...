@@ -166,10 +166,7 @@ def handle_message(event):
             event.reply_token,
             message
         )
-def user_task_input(user_input,send_message,event):
-    user_input = int(" ")
-
-    if send_message == user_input and isinstance(event.source, SourceUser):
+    elif send_message == "Programming" and isinstance(event.source, SourceUser):
         add_task_2 ={
   "type": "bubble",
   "body": {
@@ -182,7 +179,7 @@ def user_task_input(user_input,send_message,event):
         "contents": [
           {
             "type": "text",
-            "text": user_input,
+            "text": "Programming",
             "weight": "bold",
             "color": "#555555",
             "align": "center",
@@ -296,7 +293,6 @@ def user_task_input(user_input,send_message,event):
             event.reply_token,
             message
         )
-    user_task_input(user_input,send_message,event)
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
