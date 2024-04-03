@@ -182,7 +182,7 @@ def handle_message(event):
         "contents": [
           {
             "type": "text",
-            "text": {send_message},
+            "text": "send_message",
             "weight": "bold",
             "color": "#555555",
             "align": "center",
