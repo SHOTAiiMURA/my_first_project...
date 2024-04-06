@@ -168,8 +168,10 @@ def handle_message(event):
             event.reply_token,
             message
         )
-    elif send_message == "Programming" and isinstance(event.source, SourceUser):
-        add_task_2 = """
+
+#user add tasks name:
+    elif send_message == user_task and isinstance(event.source, SourceUser):
+        add_task_2 ="""
             {
   "type": "bubble",
   "body": {
@@ -182,7 +184,7 @@ def handle_message(event):
         "contents": [
           {
             "type": "text",
-            "text": "send_message",
+            "text": usr_task,
             "weight": "bold",
             "color": "#555555",
             "align": "center",
