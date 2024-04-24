@@ -29,7 +29,7 @@ def players():
         p2 = "X"
         print("Player2: " + p2)
     elif p1 != "O" or p1 != "X":
-        print("Sorry,invalid input. Type X or O")
+        print("Sorry,invalid input. Type X or O ")
         play_game()
 
 
