@@ -108,6 +108,38 @@ def drop_table(conn):
         except Exception as e:
             raise ValueError(str(e))
 
+# ユーザーID取得 event.source.user_id
+user_id = input("enter your ID: ")
+
+# ユーザー情報取得
+with conn.cursor() as cursor:
+    cursor.execute("SELECT * FROM User WHERE line_id = %s", (user_id,))
+    user = cursor.fetchone()
+
+# ユーザーが存在しない場合は新規登録
+if user is None:
+    with conn.cursor() as cursor:
+        cursor.execute("INSERT INTO User (line_id) VALUES (%s)", (user_id,))
+        conn.commit()
+
+# ユーザー情報を更新
+#with conn.cursor() as cursor:
+ #   cursor.execute("UPDATE User SET name = %s WHERE line_id = %s", (event.message.text, user_id))
+#    conn.commit()
+
+# 更新されたユーザー情報取得
+#with conn.cursor() as cursor:
+ #   cursor.execute("SELECT * FROM User WHERE line_id = %s", (user_id,))
+ #   updated_user = cursor.fetchone()
+
+# 更新されたRowをプリント
+#print(updated_user)
+
+for row in user_id:
+    print(row)
+
+# データベース接続を閉じる
+conn.close()
 
 select_priorities(conn)
 insert_priorities(conn,"high")
