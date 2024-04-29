@@ -117,7 +117,13 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(
                 text= text))
+    elif send_message == f"Bill '{amount_bill}'" and isinstance(event.source, SourceUser):
 
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text=text))
+@handler.add(Postback)
 
 # #user add tasks name:
 #     elif send_message == user_task and isinstance(event.source, SourceUser):

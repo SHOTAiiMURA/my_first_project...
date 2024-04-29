@@ -35,12 +35,32 @@ def convertTomessage(data):
 
     return f'[{data["date"].year}/{data["date"].month}/{data["date"].day}] ${data["amount_bill"]} + {data["percentage"]}% → Total ${data["Total"]}'
 
+def calculate_bill(conn, user_id):
+    result = []
+    with conn.cursor() as cur:
+        try:
+            cur.execute(f"select date, amount_bill, percentage, (amount_bill * percentage) as Total from TipHistory where tip_user_id = '{user_id}' order by date desc;")
+
+            #for row in list(cur):
+                # Try getting profile
+            return list(cur)
+
+            #conn.commit() when its for insert and delete
+        except Exception as e:
+            raise ValueError(str(e))
 def convertAllmessage(tips):
     result = ""
     for tip in tips:
         result = result + convertTomessage(tip) + "\n"
 
     return result
+#insert function
+def amount_bill_get(conn, amount_bill, tip_user_id):
+    #もしユーザーが”Bill ”で金額を送ってきたら、次にPercentageを送ってもらう。”Percentage "
+    #もし”Bill ２００”だった場合、データベースに”２００”を追加する。
+def percentage_get():
+
+def total_amount_get():
 
 if __name__ == "__main__":
     select_users(conn)
@@ -49,3 +69,6 @@ if __name__ == "__main__":
 
     #print(convertTomessage(tips[1]))
     print(convertAllmessage(tips))
+
+    test = amount_bill_get(conn, 40, 'A7')
+    print(test)
