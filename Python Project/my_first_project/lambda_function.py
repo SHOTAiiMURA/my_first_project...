@@ -111,13 +111,13 @@ def handle_message(event):
         print("user profile can't not use")
 
     if send_message == "History Tip" and isinstance(event.source, SourceUser):
-        tips = history_tip(conn, user_id)
+        tips = history_tip(conn, 'A1')
         text = convertAllmessage(tips)
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
                 text= text))
-        # if user send message
+
 
 # #user add tasks name:
 #     elif send_message == user_task and isinstance(event.source, SourceUser):
