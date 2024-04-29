@@ -28,6 +28,16 @@ from linebot.models import (
 from linebot.models.actions import PostbackAction
 
 from linebot.exceptions import (LineBotApiError, InvalidSignatureError)
+from myqsl.tip_sql import convertAllmessage, history_tip
+import pymysql.cursors
+
+conn = pymysql.connect(host='myfirstproject.c94g44mqus56.ap-northeast-1.rds.amazonaws.com',
+                    user='admin',
+                    password = 'D5H3bomrfLKtRW7geo31',
+                    db='tip_line_schema',
+                    charset='utf8mb4',
+                    cursorclass=pymysql.cursors.DictCursor)
+
 
 logger = logging.getLogger()
 logger.setLevel(logging.ERROR)
@@ -100,205 +110,23 @@ def handle_message(event):
     else:
         print("user profile can't not use")
 
-    if send_message == "Add" and isinstance(event.source, SourceUser):
-        add_task_1 = """
-        {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "New Task",
-            "weight": "bold",
-            "color": "#555555",
-            "align": "center",
-            "size": "xl"
-          },
-          {
-            "type": "separator"
-          }
-        ],
-        "spacing": "lg"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Type task name below",
-            "size": "xl",
-            "color": "#555555"
-          },
-          {
-            "type": "text",
-            "text": "Ex) learn SQL",
-            "color": "#aaaaaa"
-          }
-        ],
-        "spacing": "md"
-      }
-    ],
-    "spacing": "xl"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": "Input with Keyboard",
-        "color": "#aaaaaa"
-      }
-    ],
-    "justifyContent": "center",
-    "alignItems": "center",
-    "paddingTop": "4px"
-  }
-}
-"""
-        message = FlexSendMessage(alt_text="タスクを追加する", contents=json.loads(add_task_1))
+    if send_message == "History Tip" and isinstance(event.source, SourceUser):
+        tips = history_tip(conn, 'A1')
+        text = convertAllmessage(tips)
         line_bot_api.reply_message(
             event.reply_token,
-            message
-        )
+            TextSendMessage(
+                text= text))
+        # if user send message
 
-#user add tasks name:
-    elif send_message == user_task and isinstance(event.source, SourceUser):
-        add_task_2 ="""
-            {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": usr_task,
-            "weight": "bold",
-            "color": "#555555",
-            "align": "center",
-            "size": "xl"
-          },
-          {
-            "type": "separator"
-          }
-        ],
-        "spacing": "lg"
-      },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Choose Task Type",
-            "size": "xl",
-            "color": "#555555"
-          }
-        ],
-        "spacing": "md"
-      },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Duration + Due",
-            "align": "center",
-            "size": "lg",
-            "weight": "bold"
-          }
-        ],
-        "backgroundColor": "#D3D3D3",
-        "cornerRadius": "xxl",
-        "width": "240px",
-        "height": "44px",
-        "paddingTop": "md",
-        "action": {
-          "type": "postback",
-          "label": "Duration and Due",
-          "data": "DurationDue=User=tap",
-          "displayText": "Choose duration and due of task"
-        }
-      },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Duration",
-            "align": "center",
-            "size": "lg",
-            "weight": "bold"
-          }
-        ],
-        "backgroundColor": "#D3D3D3",
-        "cornerRadius": "xxl",
-        "width": "240px",
-        "height": "44px",
-        "paddingTop": "md",
-        "action": {
-          "type": "postback",
-          "label": "Duration of task",
-          "data": "Duration=usr=task",
-          "displayText": "Choose duration of your task"
-        }
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Start + End",
-            "align": "center",
-            "size": "lg",
-            "weight": "bold"
-          }
-        ],
-        "paddingTop": "md",
-        "width": "240px",
-        "height": "44px",
-        "backgroundColor": "#D3D3D3",
-        "cornerRadius": "xxl",
-        "action": {
-          "type": "postback",
-          "label": "Start time and end time",
-          "data": "Start&end=user=tap",
-          "displayText": "Choose starting time and end time"
-        }
-      }
-    ],
-    "spacing": "xl"
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [],
-    "justifyContent": "center",
-    "alignItems": "center",
-    "paddingTop": "4px"
-  }
-}
-"""
-        message = FlexSendMessage(alt_text="タスクタイプを選択", contents=json.loads(add_task_2))
-        line_bot_api.reply_message(
-            event.reply_token,
-            message
-        )
+# #user add tasks name:
+#     elif send_message == user_task and isinstance(event.source, SourceUser):
+#
+#         message = FlexSendMessage(alt_text="タスクタイプを選択", contents=json.loads(add_task_2))
+#         line_bot_api.reply_message(
+#             event.reply_token,
+#             message
+#         )
 
 @handler.add(FollowEvent)
 def handle_follow(event):
