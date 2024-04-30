@@ -98,7 +98,7 @@ def lambda_handler(event, context):
 #各機能のボタン部分を作成
 #add handler for rich menu
 @handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
+def handle_message(event, amount_bill):
     send_message = event.message.text
     print(event)
     display_name = 'None'
@@ -118,7 +118,134 @@ def handle_message(event):
             TextSendMessage(
                 text= text))
     elif send_message == f"Bill '{amount_bill}'" and isinstance(event.source, SourceUser):
-
+        bubble_string = """
+        {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Leave Tip ?",
+            "weight": "bold",
+            "color": "#555555",
+            "align": "center",
+            "size": "xl"
+          },
+          {
+            "type": "separator"
+          }
+        ],
+        "spacing": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "size": "xl",
+            "color": "#555555",
+            "action": {
+              "type": "postback",
+              "label": "you current bill",
+              "data": "hello"
+            },
+            "text": "Please enter a tip"
+          }
+        ],
+        "spacing": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "align": "center",
+            "size": "lg",
+            "weight": "bold",
+            "text": "10%"
+          }
+        ],
+        "backgroundColor": "#D3D3D3",
+        "cornerRadius": "xxl",
+        "width": "240px",
+        "height": "44px",
+        "paddingTop": "md",
+        "action": {
+          "type": "postback",
+          "label": "10%",
+          "data": "insert data here",
+          "displayText": "Tipped 10%"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "15%",
+            "align": "center",
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "backgroundColor": "#D3D3D3",
+        "cornerRadius": "xxl",
+        "width": "240px",
+        "height": "44px",
+        "paddingTop": "md",
+        "action": {
+          "type": "postback",
+          "label": "15%",
+          "data": "insert data here",
+          "displayText": "Tipped 15%"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "20%",
+            "align": "center",
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "paddingTop": "md",
+        "width": "240px",
+        "height": "44px",
+        "backgroundColor": "#D3D3D3",
+        "cornerRadius": "xxl",
+        "action": {
+          "type": "postback",
+          "label": "20%",
+          "data": "Insert data here",
+          "displayText": "Tipped 20%"
+        }
+      }
+    ],
+    "spacing": "xl"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [],
+    "justifyContent": "center",
+    "alignItems": "center",
+    "paddingTop": "4px"
+  }
+}
+"""
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
