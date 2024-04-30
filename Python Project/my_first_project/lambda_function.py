@@ -122,8 +122,24 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-                text=text))
-@handler.add(Postback)
+                text= text))
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    if event.postback.data == '':
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='Tipped 10%'))
+        )
+    elif event.postback.data == '':
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='Tipped 15%'))
+        )
+    elif event.postback.data == '':
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='Tipped 20%'))
+        )
 
 # #user add tasks name:
 #     elif send_message == user_task and isinstance(event.source, SourceUser):
