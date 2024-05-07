@@ -58,9 +58,18 @@ def convertAllmessage(tips):
 def amount_bill_get(conn, amount_bill, tip_user_id):
     #もしユーザーが”Bill ”で金額を送ってきたら、次にPercentageを送ってもらう。”Percentage "
     #もし”Bill ２００”だった場合、データベースに”２００”を追加する。
-def percentage_get():
+    with conn.cursor() as cur:
+        try:
+            cur.execute(f"INSERT INTO TipHistory (history_id, amount_bill, percentage,date);")
 
-def total_amount_get():
+            return list(cur)
+
+        except Exception as e:
+            raise ValueError(str(e))
+def calculate_total_bill(conn):
+    tax_rate = 0.08
+    tax_amount = amount_bill * tax_rate
+
 
 if __name__ == "__main__":
     select_users(conn)
