@@ -48,13 +48,13 @@ def calculate_bill(conn, user_id):
             #conn.commit() when its for insert and delete
         except Exception as e:
             raise ValueError(str(e))
-# def convertAllmessage(tips):
-#     result = ""
-#     for tip in tips:
-#         result = result + convertTomessage(tip) + "\n"
-#
-#     tax_rate = 0.08
-#     tax_amount = amount_bill * tax_rate
+def convertAllmessage(tips):
+    result = ""
+    for tip in tips:
+        result = result + convertTomessage(tip) + "\n"
+
+    # tax_rate = 0.08
+    # tax_amount = amount_bill * tax_rate
 
 
 if __name__ == "__main__":
