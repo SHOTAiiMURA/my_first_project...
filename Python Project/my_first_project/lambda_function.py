@@ -117,8 +117,8 @@ def handle_message(event, amount_bill, bubble_string=None):
             event.reply_token,
             TextSendMessage(
                 text= text))
-    elif send_message == f"Bill " and isinstance(event.source, SourceUser):
-        bubble_string ==  """
+    elif send_message == "Bill " and isinstance(event.source, SourceUser):
+        bubble_string = """
             {
       "type": "bubble",
       "body": {
@@ -253,7 +253,7 @@ def handle_message(event, amount_bill, bubble_string=None):
         )
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    if event.postback.data == 'history_id'/'10%'/'date'/'tip_user_id':
+    if event.postback.data == 'history_id''10%''date''tip_user_id':
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='Tipped 10%'))
