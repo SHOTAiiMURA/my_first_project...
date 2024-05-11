@@ -52,6 +52,7 @@ def convertAllmessage(tips):
     result = ""
     for tip in tips:
         result = result + convertTomessage(tip) + "\n"
+    return result
 
     # tax_rate = 0.08
     # tax_amount = amount_bill * tax_rate
@@ -62,8 +63,8 @@ if __name__ == "__main__":
     tips = history_tip(conn, 'A1')
     print(tips)
 
-    #print(convertTomessage(tips[1]))
-    #print(convertAllmessage(tips))
+    print(convertTomessage(tips[1]))
+    print(convertAllmessage(tips))
 
     #test = amount_bill_get(conn, 40, 'A7')
     #print(test)

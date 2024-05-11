@@ -82,7 +82,7 @@ def lambda_handler(event, context, amount_bill=None):
 
     # 例外処理としての動作
     try:
-        handler.handle(body, signature,event, amount_bill)
+        handler.handle(body, signature)
     except LineBotApiError as e:
         logger.error("Got exception from LINE Messaging API: %s\n" % e.handle_message)
         for m in e.error.details:
@@ -117,7 +117,7 @@ def handle_message(event, amount_bill, bubble_string=None):
             event.reply_token,
             TextSendMessage(
                 text= text))
-    elif send_message == "Bill " and isinstance(event.source, SourceUser):
+    elif send_message == ("Bill " + int) and isinstance(event.source, SourceUser):
         bubble_string = """
             {
       "type": "bubble",
