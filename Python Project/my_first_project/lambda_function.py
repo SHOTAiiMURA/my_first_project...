@@ -63,7 +63,7 @@ shota_id = "U216e9f3bb4781422a3d3af51e0697dd3"
 
 
 # Lambdaのメインの動作
-def lambda_handler(event, context):
+def lambda_handler(event, context, amount_bill=None):
     print(event)
     # 認証用のx-line-signatureヘッダー
     signature = event["headers"]["x-line-signature"]
@@ -82,7 +82,7 @@ def lambda_handler(event, context):
 
     # 例外処理としての動作
     try:
-        handler.handle(body, signature)
+        handler.handle(body, signature,event, amount_bill)
     except LineBotApiError as e:
         logger.error("Got exception from LINE Messaging API: %s\n" % e.handle_message)
         for m in e.error.details:
