@@ -186,8 +186,40 @@ def amount_bill_process_postback(postback_data, tip_user_id:str):
             return False
     else:
         False
+def check_user(user_id):
+    ## Check if user_id is in User table
+    user_data_list = []
+    with conn.cursor() as cur:
+        try:
+            cur.execute(f"select user_id from User;")
 
+            user_data_list = list(cur)
+
+
+        except Exception as e:
+            raise ValueError(str(e))
+
+    #user_list = [{"user_id": "A1", "name": "John"}, {"user_id": "A2", "name": "John"}, {"user_id": "A3", "name": "John"}]
+
+    user_list = []
+    for user_data in user_data_list:
+        user_list.append(user_data["user_id"])
+
+
+    if user_id not in user_list:
+
+        with conn.cursor() as cur:
+            try:
+                sql = f"insert into User values ('{user_id}', '');"
+                print("[Inserting... -> ]" + sql)
+                cur.execute(sql)
+
+                conn.commit()
+            except Exception as e:
+                raise ValueError(str(e))
+        return
 def insert_amount_bill(percentage:int, amount_bill:int,tip_user_id:str):
+    check_user(tip_user_id)
     with conn.cursor() as cur:
         try:
             random_history_uuid = uuid.uuid4()
@@ -209,16 +241,17 @@ if __name__ == "__main__":
     tips = history_tip(conn, 'A1')
     print(tips)
 
-    print(convertTomessage(tips[1]))
+    #print(convertTomessage(tips[1]))
     print(convertAllmessage(tips))
 
     with open("output.json", "w") as f:
         json.dump(jason_insert(200), f)
     #test = amount_bill_get(conn, 40, 'A7')
     #print(test)
-    amount_bill_process_postback("Bill 25% 800")
+    #amount_bill_process_postback("Bill 25% 800")
     tips = history_tip(conn, 'A1')
     print(convertAllmessage(tips))
 
 
+    insert_amount_bill(10, 250, 'c1')
 
