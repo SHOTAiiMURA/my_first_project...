@@ -111,8 +111,13 @@ def handle_message(event):
         print("user profile can't not use")
 
     if send_message == "History Tip" and isinstance(event.source, SourceUser):
+        print("History Tip")
         tips = history_tip(conn, event.source.user_id)
+        print("Tips generated")
+        print(tips)
         text = convertAllmessage(tips)
+        print("Message converted")
+        print(text)
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
