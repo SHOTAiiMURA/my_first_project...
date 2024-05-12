@@ -170,7 +170,7 @@ def jason_insert(amount_bill):
       }
     }
 
-def amount_bill_process_postback(postback_data):
+def amount_bill_process_postback(postback_data, tip_user_id:str):
     if postback_data[:5] == 'Bill ':
         percent_bill_amount = postback_data.replace("Bill ", "")
         # ->"10% 200"
@@ -180,7 +180,7 @@ def amount_bill_process_postback(postback_data):
 
         # error check
         if len(percent_bill_amount_list) == 2 and percent_bill_amount_list[0].isdigit() and percent_bill_amount_list[1].isdigit():
-            insert_amount_bill(int(percent_bill_amount_list[0]), int(percent_bill_amount_list[1]), 'A1')
+            insert_amount_bill(int(percent_bill_amount_list[0]), int(percent_bill_amount_list[1]), tip_user_id)
             return True
         else:
             return False

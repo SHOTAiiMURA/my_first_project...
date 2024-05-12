@@ -98,7 +98,7 @@ def lambda_handler(event, context, amount_bill=None):
 #各機能のボタン部分を作成
 #add handler for rich menu
 @handler.add(MessageEvent, message=TextMessage)
-def handle_message(event, amount_bill, bubble_string=None):
+def handle_message(event):
     send_message = event.message.text
     print(event)
     display_name = 'None'
@@ -111,7 +111,7 @@ def handle_message(event, amount_bill, bubble_string=None):
         print("user profile can't not use")
 
     if send_message == "History Tip" and isinstance(event.source, SourceUser):
-        tips = history_tip(conn, 'A1')
+        tips = history_tip(conn, event.source.user_id)
         text = convertAllmessage(tips)
         line_bot_api.reply_message(
             event.reply_token,
@@ -137,7 +137,7 @@ def handle_message(event, amount_bill, bubble_string=None):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    if amount_bill_process_postback(event.postback.data):
+    if amount_bill_process_postback(event.postback.data,event.source.user_id):
         line_bot_api.reply_message(
                 event.reply_token,
                 (TextSendMessage(text='Thank you for your tip'))
