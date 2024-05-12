@@ -28,7 +28,7 @@ from linebot.models import (
 from linebot.models.actions import PostbackAction
 
 from linebot.exceptions import (LineBotApiError, InvalidSignatureError)
-from myqsl.tip_sql import convertAllmessage, history_tip
+from myqsl.tip_sql import convertAllmessage, history_tip, jason_insert, amount_bill_process_postback
 import pymysql.cursors
 
 conn = pymysql.connect(host='myfirstproject.c94g44mqus56.ap-northeast-1.rds.amazonaws.com',
@@ -117,156 +117,30 @@ def handle_message(event, amount_bill, bubble_string=None):
             event.reply_token,
             TextSendMessage(
                 text= text))
-    elif send_message == ("Bill " + int) and isinstance(event.source, SourceUser):
-        bubble_string = """
-            {
-      "type": "bubble",
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Leave Tip ?",
-                "weight": "bold",
-                "color": "#555555",
-                "align": "center",
-                "size": "xl"
-              },
-              {
-                "type": "separator"
-              }
-            ],
-            "spacing": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "size": "xl",
-                "color": "#555555",
-                "action": {
-                  "type": "postback",
-                  "label": "you current bill",
-                  "data": "hello"
-                },
-                "text": "Please enter a tip"
-              }
-            ],
-            "spacing": "md"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "align": "center",
-                "size": "lg",
-                "weight": "bold",
-                "text": "10%"
-              }
-            ],
-            "backgroundColor": "#D3D3D3",
-            "cornerRadius": "xxl",
-            "width": "240px",
-            "height": "44px",
-            "paddingTop": "md",
-            "action": {
-              "type": "postback",
-              "label": "percentage",
-              "data": 'history_id'/'10%'/date'/'tip_user_id',
-              "displayText": "Tipped 10%"
-            }
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "15%",
-                "align": "center",
-                "size": "lg",
-                "weight": "bold"
-              }
-            ],
-            "backgroundColor": "#D3D3D3",
-            "cornerRadius": "xxl",
-            "width": "240px",
-            "height": "44px",
-            "paddingTop": "md",
-            "action": {
-              "type": "postback",
-              "label": "percentage",
-              "data": 'history_id'/'15%'/date'/'tip_user_id',
-              "displayText": "Tipped 15%"
-            }
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "20%",
-                "align": "center",
-                "size": "lg",
-                "weight": "bold"
-              }
-            ],
-            "paddingTop": "md",
-            "width": "240px",
-            "height": "44px",
-            "backgroundColor": "#D3D3D3",
-            "cornerRadius": "xxl",
-            "action": {
-              "type": "postback",
-              "label": "percentage",
-              "data": 'history_id'/'20%'/date'/'tip_user_id',
-              "displayText": "Tipped 20%"
-            }
-          }
-        ],
-        "spacing": "xl"
-      },
-      "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [],
-        "justifyContent": "center",
-        "alignItems": "center",
-        "paddingTop": "4px"
-      }
-    }
-    """
-        message = FlexSendMessage(alt_text="Bill sent", contents=json.loads(bubble_string))
-        line_bot_api.reply_message(
-            event.reply_token,
-            message
-        )
+    elif send_message[:5] == "Bill " and isinstance(event.source, SourceUser):
+        # send_message = "Bill 200"
+        bill_amount = send_message.replace("Bill ", "")
+        # bill_amount = "200"
+        if bill_amount.isdigit():
+            bubble = jason_insert(bill_amount)
+
+            message = FlexSendMessage(alt_text="Bill sent", contents=bubble)
+            line_bot_api.reply_message(
+                event.reply_token,
+                message
+            )
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                (TextSendMessage(text='Invalid bill format. Send Bill again!!'))
+            )
+
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    if event.postback.data == 'history_id''10%''date''tip_user_id':
+    if amount_bill_process_postback(event.postback.data):
         line_bot_api.reply_message(
-            event.reply_token,
-            (TextSendMessage(text='Tipped 10%'))
-        )
-    elif event.postback.data == 'history_id'/'15%'/'date'/'tip_user_id':
-        line_bot_api.reply_message(
-            event.reply_token,
-            (TextSendMessage(text='Tipped 15%'))
-        )
-    elif event.postback.data == 'history_id'/'20%'/'date'/'tip_user_id':
-        line_bot_api.reply_message(
-            event.reply_token,
-            (TextSendMessage(text='Tipped 20%'))
+                event.reply_token,
+                (TextSendMessage(text='Thank you for your tip'))
         )
 
 # #user add tasks name:
