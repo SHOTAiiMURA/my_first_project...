@@ -192,7 +192,7 @@ def total_amountBill(conn, user_id):
     result = []
     with conn.cursor() as cur:
         try:
-            cur.execute(f"select (amount_bill * percentage/ 100 + amount_bill) as Total from TipHistory where tip_user_id = '{user_id}' order by date desc;")
+            cur.execute(f"select (amount_bill * percentage/ 100 + amount_bill) as Total from TipHistory where tip_user_id = '{user_id}';")
 
             return list(cur)
         except Exception as e:
@@ -266,7 +266,7 @@ if __name__ == "__main__":
     tips = history_tip(conn, 'A1')
     print(convertAllmessage(tips))
 
-    total_amountBill(conn, 'A1')
+    total_amountBill(conn, 'A3')
 
     insert_amount_bill(10, 250, 'c1')
 
