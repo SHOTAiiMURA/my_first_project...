@@ -141,11 +141,12 @@ def handle_message(event):
             )
 
 @handler.add(PostbackEvent)
-def handle_postback(event):
+def handle_postback(event,amount_bill):
     if amount_bill_process_postback(event.postback.data,event.source.user_id):
+
         line_bot_api.reply_message(
                 event.reply_token,
-                (TextSendMessage(text='Thank you for your tip'))
+                (TextSendMessage(text= {amount_bill}))
         )
 
 # #user add tasks name:
