@@ -234,10 +234,13 @@ def insert_amount_bill(percentage:int, amount_bill:int,tip_user_id:str):
         except Exception as e:
             raise ValueError(str(e))
 
-def return_total_amountBill(conn,amount_bill:int):
+def total_amountBill(conn, amount_bill):
+    result = []
     with conn.cursor() as cur:
         try:
-            cur.execute(f"select amount_bill from TipHistory;")
+            cur.execute(f"select {amount_bill} from TipHistory;")
+
+            return list(cur)
 
         except Exception as e:
             raise ValueError(str(e))
@@ -262,4 +265,4 @@ if __name__ == "__main__":
 
     insert_amount_bill(10, 250, 'c1')
 
-    return_total_amountBill(conn, 330)
+    return_total_amountBill(330)

@@ -28,7 +28,7 @@ from linebot.models import (
 from linebot.models.actions import PostbackAction
 
 from linebot.exceptions import (LineBotApiError, InvalidSignatureError)
-from myqsl.tip_sql import convertAllmessage, history_tip, jason_insert, amount_bill_process_postback
+from myqsl.tip_sql import convertAllmessage, history_tip, jason_insert, amount_bill_process_postback, total_amountBill
 import pymysql.cursors
 
 conn = pymysql.connect(host='myfirstproject.c94g44mqus56.ap-northeast-1.rds.amazonaws.com',
@@ -143,10 +143,10 @@ def handle_message(event):
 @handler.add(PostbackEvent)
 def handle_postback(event,amount_bill):
     if amount_bill_process_postback(event.postback.data,event.source.user_id):
-
+        total_bill = total_amountBill(conn, event.source.user_id)
         line_bot_api.reply_message(
                 event.reply_token,
-                (TextSendMessage(text= {amount_bill}))
+                (TextSendMessage(text= total_bill))
         )
 
 # #user add tasks name:
