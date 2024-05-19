@@ -28,7 +28,7 @@ from linebot.models import (
 from linebot.models.actions import PostbackAction
 
 from linebot.exceptions import (LineBotApiError, InvalidSignatureError)
-from myqsl.tip_sql import convertAllmessage, history_tip, jason_insert, amount_bill_process_postback
+from myqsl.tip_sql import convertAllmessage, history_tip, jason_insert, amount_bill_process_postback,delete_tipHistory
 import pymysql.cursors
 
 conn = pymysql.connect(host='myfirstproject.c94g44mqus56.ap-northeast-1.rds.amazonaws.com',
@@ -139,13 +139,12 @@ def handle_message(event):
                 event.reply_token,
                 (TextSendMessage(text='Invalid bill format. Send Bill again!!'))
             )
-    # elif send_message[:7] == "Tipped " and isinstance(event.source, SourceUser):
-    #
-    #     message = FlexSendMessage(alt_text="Your Total Bill")
-    #     line_bot_api.reply_message(
-    #         event.reply_token,
-    #         message
-    #     )
+    elif send_message == "Delete" and isinstance(event.source, SourceUser):
+            delete_tipHistory(conn)
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(
+                    text= "Deleted your Tip History"))
 
 
 @handler.add(PostbackEvent)
@@ -155,6 +154,12 @@ def handle_postback(event):
                         event.reply_token,
                         (TextSendMessage(text='Thank you for your tip'))
             )
+    # elif amount_bill_process_postback2(event.postback.data,event.source.user_id):
+    #
+    #     line_bot_api.reply_message(
+    #                     event.reply_token,
+    #                     (TextSendMessage(text='Total'))
+    #         )
 
 
 

@@ -187,6 +187,14 @@ def amount_bill_process_postback(postback_data, tip_user_id:str):
             return False
     else:
         False
+# def amount_bill_process_postback2(postback_data, tip_user_id:str,):
+#     if postback_data[:5] == 'Bill ':
+#         percent_bill_amount2 = postback_data.replace("Bill ", "")
+#         # ->"10% 200"
+#         # [abnormal] Bill 10 200
+#         percent_bill_amount_list2 = percent_bill_amount2.split("% ")
+#         # ->["10","200"]
+#         return int(percent_bill_amount_list2[1]) * int(percent_bill_amount_list2[0])/100 + int(percent_bill_amount_list2[1])
 
 def check_user(user_id):
     ## Check if user_id is in User table
@@ -236,6 +244,14 @@ def insert_amount_bill(percentage:int, amount_bill:int,tip_user_id:str):
         except Exception as e:
             raise ValueError(str(e))
 
+def delete_tipHistory(conn):
+    with conn.cursor() as cur:
+        try:
+            cur.execute("delete from TipHistory;")
+
+            conn.commit()
+        except Exception as e:
+            raise ValueError(str(e))
 
 
 if __name__ == "__main__":
