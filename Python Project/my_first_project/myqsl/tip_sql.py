@@ -188,18 +188,6 @@ def amount_bill_process_postback(postback_data, tip_user_id:str):
     else:
         False
 
-def total_amountBill(conn, user_id):
-    result = []
-    with conn.cursor() as cur:
-        try:
-            cur.execute(f"select (amount_bill * percentage/ 100 + amount_bill) as Total from TipHistory where tip_user_id = '{user_id}';")
-
-            return list(cur)
-        except Exception as e:
-            raise ValueError(str(e))
-def convertTomessage2(data):
-    return f'Your Total Bill is ${data["Total"]}'
-
 def check_user(user_id):
     ## Check if user_id is in User table
     user_data_list = []
@@ -265,8 +253,6 @@ if __name__ == "__main__":
     #amount_bill_process_postback("Bill 25% 800")
     tips = history_tip(conn, 'A1')
     print(convertAllmessage(tips))
-
-    total_amountBill(conn, 'A3')
 
     insert_amount_bill(10, 250, 'c1')
 
