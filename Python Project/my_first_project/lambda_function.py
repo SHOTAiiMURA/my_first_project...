@@ -162,5 +162,5 @@ def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(
-            text='登録して頂きありがとうございます！Cafe BORCELLEのLINE公式アカウントです。\n\n下記Menuから今日のドリンクメニューやクーポン、お問い合わせ、ホームページのリンクがご確認頂けます。\n\n自動会話botと連携しており、チャットで話しかけると返答が返ってきます。\n\nぜひご活用頂ければ幸いです。'))
+            text='登録して頂きありがとうございます！お会計時に払うTipの料金、払った金額の記録を閲覧できるアカウントです。\n\n下記Menuから使用方法をご覧いただけます。\n\nぜひ旅行の際にご活用頂ければ幸いです。'))
 
