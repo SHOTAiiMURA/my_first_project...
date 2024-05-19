@@ -244,7 +244,7 @@ def total_amountBill(conn, amount_bill):
 
         except Exception as e:
             raise ValueError(str(e))
-def convertTomessage(data):
+def convertTomessage2(data):
     return f'{data["amount_bill"]}'
 
 
