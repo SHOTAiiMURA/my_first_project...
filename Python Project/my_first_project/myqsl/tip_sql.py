@@ -244,6 +244,8 @@ def total_amountBill(conn, amount_bill):
 
         except Exception as e:
             raise ValueError(str(e))
+def convertTomessage(data):
+    return f'{data["amount_bill"]}'
 
 
 if __name__ == "__main__":
@@ -265,4 +267,4 @@ if __name__ == "__main__":
 
     insert_amount_bill(10, 250, 'c1')
 
-    return_total_amountBill(330)
+    total_amountBill(330)
