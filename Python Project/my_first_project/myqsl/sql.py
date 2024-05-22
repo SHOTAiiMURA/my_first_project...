@@ -6,7 +6,11 @@ conn = pymysql.connect(host='myfirstproject.c94g44mqus56.ap-northeast-1.rds.amaz
                     db='tip_line_schema',
                     charset='utf8mb4',
                     cursorclass=pymysql.cursors.DictCursor)
+# コネクションが切れた時に再接続してくれるよう設定
+conn.ping(reconnect=True)
 
+# 接続できているかどうか確認
+print(conn.is_connected())
 def my_db(conn):
     with conn.cursor() as cur:
         try:
