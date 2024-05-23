@@ -64,7 +64,7 @@ def create_high_task(task_name, duration, line_id):
 ## 3. due_date
 ## 4. priority
 
-
+#use for view task
 def read_task(conn):
     return
 
