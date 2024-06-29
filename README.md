@@ -17,9 +17,9 @@
         * Install LINE application.
         * Follow the account by scanning QR code below.
   ## How to test
-        * How to use Tip Calculator 
-            * Type “Bill 200” : to calculate the amount of tips
-            * Type “History Tip” : to view the list of history tips.
+   * How to use Tip Calculator 
+   * Type “Bill 200” : to calculate the amount of tips
+   * Type “History Tip” : to view the list of history tips.
 # Key Points of Focus
     * The reason why I chose LINE as platform is that it is easy to launch apps and can easily share the total amount and amount of tips by inviting group account. In contrast, application might take time to launch it and has to constantly update version.
     * It is able to quickly to calculate the total amount of bill and tips. 
