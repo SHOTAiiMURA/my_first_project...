@@ -3,7 +3,7 @@
 * ロゴやバナー画像
 # Poupose of project
 This apps is help you to calculate tip while you are traveling. 
-This project of purpose is aiming to learn Python 3, Python MySQL, AWS Lambda, RDS,  LINE API, and MySQL. 
+This project of purpose is aiming to learn Python 3, Python MySQL, AWS Lambda, RDS,  LINE API, LINE Developer and MySQL. 
 * サービスのスクリーンショット画像 or GIFアニメ（デモ）
 # Requirement
 Python 3
