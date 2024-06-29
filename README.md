@@ -1,4 +1,4 @@
-# Tip Calculator
+# Title: Tip Calculator
 
 * ロゴやバナー画像
 # Poupose of project
