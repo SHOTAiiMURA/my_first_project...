@@ -14,7 +14,7 @@ LINE API
 MySQL
 # Configuration Chart
     ********** INSERT CHART OF MYSQL************
-#How to Use
+# How to Use
   ## How to Install
    Install LINE application.
    Follow the account by scanning QR code below.
