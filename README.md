@@ -2,8 +2,8 @@
 
 * ロゴやバナー画像
 # Poupose of project
-This apps is help you to calculate tip while you are traveling. 
-This project of purpose is aiming to learn Python 3, Python MySQL, AWS Lambda, RDS,  LINE API, LINE Developer and MySQL. 
+This apps helps you to calculate tips while you are traveling. 
+This project aims to learn Python 3, Python MySQL, AWS Lambda, RDS,  LINE API, LINE Developer, and MySQL. 
 * サービスのスクリーンショット画像 or GIFアニメ（デモ）
 # Requirement
 Python 3
@@ -12,8 +12,9 @@ AWS RDS
 LINE
 LINE API
 MySQL
-# Configuration Chart
-    ********** INSERT CHART OF MYSQL************
+# System Architecture
+<img width="722" alt="Screenshot 2024-07-01 at 18 57 32" src="https://github.com/SHOTAiiMURA/my_first_project.../assets/91776514/373e7082-e5aa-4eb4-bd8f-33716121967f">
+
 # How to Use
   ## How to Install
    Install LINE application.
