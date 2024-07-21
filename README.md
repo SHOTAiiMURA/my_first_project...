@@ -1,5 +1,7 @@
 # Title: Tip Calculator
 
+https://github.com/user-attachments/assets/adf33fad-7570-4645-a4dd-c0e21007c537
+
 * ロゴやバナー画像
 # Poupose of project
 This apps helps you to calculate tips while you are traveling. 
